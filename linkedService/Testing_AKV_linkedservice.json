@@ -1,0 +1,10 @@
+{
+	"name": "Testing_AKV_linkedservice",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://Scretes.vault.azure.net/"
+		}
+	}
+}
