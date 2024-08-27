@@ -46,7 +46,7 @@
 						"type": "AzureBlobStorageReadSettings",
 						"recursive": true,
 						"modifiedDatetimeEnd": {
-							"value": "@{adddays(pipeline().TriggerTime, -30)}",
+							"value": "@{adddays(pipeline().TriggerTime, -4)}",
 							"type": "Expression"
 						},
 						"wildcardFileName": "*"
@@ -65,7 +65,7 @@
 			},
 			"LoggingPath": {
 				"type": "string",
-				"defaultValue": "loggingfolder/subfolder"
+				"defaultValue": "loggingfolder/logfile"
 			}
 		},
 		"annotations": []
