@@ -11,6 +11,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Test_linkedservice'"
 		},
+		"jsonotpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'jsonotpt_linkedservice'"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://Scretes.vault.azure.net/"
+		},
+		"Testing_AKV_linkedservice_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://Scretes.vault.azure.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -40,6 +52,15 @@
 					},
 					"Test_linkedservice_connectionString": {
 						"value": "[parameters('Test_linkedservice_connectionString')]"
+					},
+					"jsonotpt_linkedservice_connectionString": {
+						"value": "[parameters('jsonotpt_linkedservice_connectionString')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"Testing_AKV_linkedservice_properties_typeProperties_baseUrl": {
+						"value": "[parameters('Testing_AKV_linkedservice_properties_typeProperties_baseUrl')]"
 					}
 				}
 			},

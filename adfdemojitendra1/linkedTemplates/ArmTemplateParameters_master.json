@@ -8,6 +8,15 @@
 		"Test_linkedservice_connectionString": {
 			"value": ""
 		},
+		"jsonotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://Scretes.vault.azure.net/"
+		},
+		"Testing_AKV_linkedservice_properties_typeProperties_baseUrl": {
+			"value": "https://Scretes.vault.azure.net/"
+		},
 		"containerUri": {
 			"value": ""
 		},
