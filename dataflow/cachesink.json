@@ -118,7 +118,14 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          emp_id,",
+				"          emp_name = empname,",
+				"          gender,",
+				"          country,",
+				"          salary",
+				"     )) ~> sink1"
 			]
 		}
 	}
