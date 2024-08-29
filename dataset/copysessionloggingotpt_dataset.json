@@ -1,0 +1,23 @@
+{
+	"name": "copysessionloggingotpt_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "copysessionlogging_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "output3",
+				"container": "azureactivitiescontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
