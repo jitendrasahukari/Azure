@@ -32,7 +32,7 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     store: 'cache',",
 				"     format: 'inline',",
-				"     output: false,",
+				"     output: true,",
 				"     saveOrder: 1) ~> sink1"
 			]
 		}

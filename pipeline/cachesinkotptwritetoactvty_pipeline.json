@@ -23,7 +23,34 @@
 						"coreCount": 8,
 						"computeType": "General"
 					},
-					"traceLevel": "Fine"
+					"traceLevel": "None",
+					"cacheSinks": {
+						"firstRowOnly": true
+					}
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "cachesinkotptwrittoactvty",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "MaxSalary",
+					"value": {
+						"value": "@activity('cachesinkotptwrittoactvty').output.runStatus.output.sink1.value[0].MaxEmpId",
+						"type": "Expression"
+					}
 				}
 			}
 		],
