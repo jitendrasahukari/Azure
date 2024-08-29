@@ -47,6 +47,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'cachesinkotpt_linkedservice'"
 		},
+		"copysessionlogging_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'copysessionlogging_linkedservice'"
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://Scretes.vault.azure.net/"
@@ -347,6 +351,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/copysessionlogging_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('copysessionlogging_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/BinaryDatasetForDeleteActivity')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -554,50 +571,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/copyacbfrcachesinkotpt_linkedserice')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/cachesink_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "cachesink_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "emp_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "emp_name",
-						"type": "varchar"
-					},
-					{
-						"name": "gender",
-						"type": "varchar"
-					},
-					{
-						"name": "country",
-						"type": "varchar"
-					},
-					{
-						"name": "salary",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tbl_employee"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/cachesink_linkedservice')]"
 			]
 		}
 	]

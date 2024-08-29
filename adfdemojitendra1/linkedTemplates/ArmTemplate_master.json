@@ -47,6 +47,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'cachesinkotpt_linkedservice'"
 		},
+		"copysessionlogging_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'copysessionlogging_linkedservice'"
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://Scretes.vault.azure.net/"
@@ -159,6 +163,9 @@
 					},
 					"cachesinkotpt_linkedservice_password": {
 						"value": "[parameters('cachesinkotpt_linkedservice_password')]"
+					},
+					"copysessionlogging_linkedservice_connectionString": {
+						"value": "[parameters('copysessionlogging_linkedservice_connectionString')]"
 					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"

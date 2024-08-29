@@ -35,6 +35,9 @@
 		"cachesinkotpt_linkedservice_password": {
 			"value": ""
 		},
+		"copysessionlogging_linkedservice_connectionString": {
+			"value": ""
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://Scretes.vault.azure.net/"
 		},
