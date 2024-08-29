@@ -11,11 +11,71 @@
 		"jsonotpt_linkedservice_connectionString": {
 			"value": ""
 		},
+		"template1_linkedservice_connectionString": {
+			"value": ""
+		},
+		"template_linkedservice_connectionString": {
+			"value": ""
+		},
+		"copyacbfrcachesink_linkedservice_connectionString": {
+			"value": ""
+		},
+		"copyacbfrcachesinkotpt_linkedserice_password": {
+			"value": ""
+		},
+		"cachesink_linkedservice_password": {
+			"value": ""
+		},
+		"cachesinkinpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"cachecountrycode_linkedservice_password": {
+			"value": ""
+		},
+		"cachesinkotpt_linkedservice_password": {
+			"value": ""
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://Scretes.vault.azure.net/"
 		},
 		"Testing_AKV_linkedservice_properties_typeProperties_baseUrl": {
 			"value": "https://Scretes.vault.azure.net/"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"cachesink_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"cachesink_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"cachesink_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"cachecountrycode_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"cachecountrycode_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"cachecountrycode_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"cachesinkotpt_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"cachesinkotpt_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"cachesinkotpt_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
 		},
 		"containerUri": {
 			"value": ""

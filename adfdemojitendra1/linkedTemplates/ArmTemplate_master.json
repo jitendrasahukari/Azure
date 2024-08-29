@@ -15,6 +15,38 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'jsonotpt_linkedservice'"
 		},
+		"template1_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'template1_linkedservice'"
+		},
+		"template_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'template_linkedservice'"
+		},
+		"copyacbfrcachesink_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'copyacbfrcachesink_linkedservice'"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'copyacbfrcachesinkotpt_linkedserice'"
+		},
+		"cachesink_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'cachesink_linkedservice'"
+		},
+		"cachesinkinpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'cachesinkinpt_linkedservice'"
+		},
+		"cachecountrycode_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'cachecountrycode_linkedservice'"
+		},
+		"cachesinkotpt_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'cachesinkotpt_linkedservice'"
+		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://Scretes.vault.azure.net/"
@@ -22,6 +54,54 @@
 		"Testing_AKV_linkedservice_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://Scretes.vault.azure.net/"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"cachesink_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"cachesink_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"cachesink_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"cachecountrycode_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"cachecountrycode_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"cachecountrycode_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"cachesinkotpt_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"cachesinkotpt_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"cachesinkotpt_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
 		},
 		"containerUri": {
 			"type": "string",
@@ -56,15 +136,95 @@
 					"jsonotpt_linkedservice_connectionString": {
 						"value": "[parameters('jsonotpt_linkedservice_connectionString')]"
 					},
+					"template1_linkedservice_connectionString": {
+						"value": "[parameters('template1_linkedservice_connectionString')]"
+					},
+					"template_linkedservice_connectionString": {
+						"value": "[parameters('template_linkedservice_connectionString')]"
+					},
+					"copyacbfrcachesink_linkedservice_connectionString": {
+						"value": "[parameters('copyacbfrcachesink_linkedservice_connectionString')]"
+					},
+					"copyacbfrcachesinkotpt_linkedserice_password": {
+						"value": "[parameters('copyacbfrcachesinkotpt_linkedserice_password')]"
+					},
+					"cachesink_linkedservice_password": {
+						"value": "[parameters('cachesink_linkedservice_password')]"
+					},
+					"cachesinkinpt_linkedservice_connectionString": {
+						"value": "[parameters('cachesinkinpt_linkedservice_connectionString')]"
+					},
+					"cachecountrycode_linkedservice_password": {
+						"value": "[parameters('cachecountrycode_linkedservice_password')]"
+					},
+					"cachesinkotpt_linkedservice_password": {
+						"value": "[parameters('cachesinkotpt_linkedservice_password')]"
+					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
 					},
 					"Testing_AKV_linkedservice_properties_typeProperties_baseUrl": {
 						"value": "[parameters('Testing_AKV_linkedservice_properties_typeProperties_baseUrl')]"
+					},
+					"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server": {
+						"value": "[parameters('copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server')]"
+					},
+					"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database": {
+						"value": "[parameters('copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database')]"
+					},
+					"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName": {
+						"value": "[parameters('copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName')]"
+					},
+					"cachesink_linkedservice_properties_typeProperties_server": {
+						"value": "[parameters('cachesink_linkedservice_properties_typeProperties_server')]"
+					},
+					"cachesink_linkedservice_properties_typeProperties_database": {
+						"value": "[parameters('cachesink_linkedservice_properties_typeProperties_database')]"
+					},
+					"cachesink_linkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('cachesink_linkedservice_properties_typeProperties_userName')]"
+					},
+					"cachecountrycode_linkedservice_properties_typeProperties_server": {
+						"value": "[parameters('cachecountrycode_linkedservice_properties_typeProperties_server')]"
+					},
+					"cachecountrycode_linkedservice_properties_typeProperties_database": {
+						"value": "[parameters('cachecountrycode_linkedservice_properties_typeProperties_database')]"
+					},
+					"cachecountrycode_linkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('cachecountrycode_linkedservice_properties_typeProperties_userName')]"
+					},
+					"cachesinkotpt_linkedservice_properties_typeProperties_server": {
+						"value": "[parameters('cachesinkotpt_linkedservice_properties_typeProperties_server')]"
+					},
+					"cachesinkotpt_linkedservice_properties_typeProperties_database": {
+						"value": "[parameters('cachesinkotpt_linkedservice_properties_typeProperties_database')]"
+					},
+					"cachesinkotpt_linkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('cachesinkotpt_linkedservice_properties_typeProperties_userName')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "adfdemojitendra1_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfdemojitendra1_ArmTemplate_0')]"
+			]
 		}
 	]
 }
