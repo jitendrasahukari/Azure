@@ -1,0 +1,25 @@
+{
+	"name": "cachecountrycode_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "cachecountrycode_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "country_code",
+				"type": "varchar"
+			},
+			{
+				"name": "country_name",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_country"
+		}
+	}
+}
