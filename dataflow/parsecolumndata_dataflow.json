@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "parseotpt_dataset",
+						"referenceName": "parseotpt1_dataset",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -53,14 +53,9 @@
 				"     documentForm: 'singleDocument') ~> parse2",
 				"parse2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
+				"     partitionFileNames:['parsedoutput.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          empid,",
 				"          empname,",
