@@ -53,7 +53,6 @@
 				"     documentForm: 'singleDocument') ~> parse2",
 				"parse2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:['parsedoutput.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
@@ -61,11 +60,8 @@
 				"          empname,",
 				"          skill1 = ParseSkills.sk1,",
 				"          skill2 = ParseSkills.sk2,",
-				"          skill3 = ParseSkills.sk3,",
-				"          City = ParseAddress.city,",
-				"          Country = ParseAddress.country",
-				"     ),",
-				"     partitionBy('hash', 1)) ~> sink1"
+				"          skill3 = ParseSkills.sk3",
+				"     )) ~> sink1"
 			]
 		}
 	}
