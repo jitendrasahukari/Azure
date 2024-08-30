@@ -1,0 +1,62 @@
+{
+	"name": "stringify_dataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "stringify_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "stringifyotpt_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "stringify1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          contact as (landline as integer, mobile as integer),",
+				"          name as string,",
+				"          skills as string[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source1",
+				"source1 stringify(Contact = contact ? string,",
+				"     partitionBy('hash', 1),",
+				"     format: 'json') ~> stringify1",
+				"stringify1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          empname as string,",
+				"          gender as string,",
+				"          country as string,",
+				"          salary as string",
+				"     ),",
+				"     partitionFileNames:['stringifyotpt'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          empname = name,",
+				"          gender = skills,",
+				"          country = name",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}
