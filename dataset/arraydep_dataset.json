@@ -1,0 +1,33 @@
+{
+	"name": "arraydep_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "arraydep_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "assert_dep.csv",
+				"folderPath": "input",
+				"container": "azureactivitiescontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "depId",
+				"type": "String"
+			},
+			{
+				"name": "depName",
+				"type": "String"
+			}
+		]
+	}
+}

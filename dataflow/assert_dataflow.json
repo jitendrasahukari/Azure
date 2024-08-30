@@ -1,0 +1,56 @@
+{
+	"name": "assert_dataflow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "assert_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "arraydep_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "assert1"
+				},
+				{
+					"name": "filter1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          emp_id as integer,",
+				"          {name } as string,",
+				"          gender as string,",
+				"          doj as string,",
+				"          depid as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          depId as string,",
+				"          depName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source2",
+				"source1, source2 assert(expectTrue(!isNull(toDate(doj, 'yyyyMMdd')), false, 'assert1'),",
+				"     expectUnique(emp_id, false, 'assert2'),",
+				"     expectExists(source1@depid == source2@depId, false, 'assert3')) ~> assert1",
+				"assert1 filter(ERROR_FUNCTION('')) ~> filter1"
+			]
+		}
+	}
+}
