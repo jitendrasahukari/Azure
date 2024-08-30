@@ -1,0 +1,16 @@
+{
+	"name": "parseotpt_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "parseotpt_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tbl_parse"
+		}
+	}
+}
