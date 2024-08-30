@@ -19,10 +19,21 @@
 					"name": "source2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "assertotpt_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "assert1"
+				},
+				{
+					"name": "derivedColumn1"
 				},
 				{
 					"name": "filter1"
@@ -49,7 +60,23 @@
 				"source1, source2 assert(expectTrue(!isNull(toDate(doj, 'yyyyMMdd')), false, 'assert1'),",
 				"     expectUnique(emp_id, false, 'assert2'),",
 				"     expectExists(source1@depid == source2@depId, false, 'assert3')) ~> assert1",
-				"assert1 filter(ERROR_FUNCTION('')) ~> filter1"
+				"assert1 derive(isErrorRow = isError(),",
+				"          hasErrordataformat = hasError('assert1'),",
+				"          hasErrornotunique = hasError('assert2'),",
+				"          hasErrornotexists = hasError('assert3')) ~> derivedColumn1",
+				"derivedColumn1 filter(isErrorRow == false()) ~> filter1",
+				"filter1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          empname as string,",
+				"          gender as string,",
+				"          country as string,",
+				"          salary as string",
+				"     ),",
+				"     partitionFileNames:['assertotpt.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
