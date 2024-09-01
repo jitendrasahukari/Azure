@@ -40,7 +40,7 @@
 				"source(output(",
 				"          empid as integer,",
 				"          empname as string,",
-				"          depid as string",
+				"          depid as short",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
