@@ -1,0 +1,12 @@
+{
+	"name": "parameterizelks_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "parametarizelks_advanced",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
