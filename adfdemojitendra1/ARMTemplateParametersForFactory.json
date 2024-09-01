@@ -116,6 +116,15 @@
 		"udfotpt_linkedservice_connectionString": {
 			"value": ""
 		},
+		"rtntopipe_linkedservice_connectionString": {
+			"value": ""
+		},
+		"rtntopipeotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"rtntopipe_dataset_password": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
 		},
@@ -186,6 +195,15 @@
 			"value": "TESTDB"
 		},
 		"parsetrans_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"rtntopipe_dataset_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"rtntopipe_dataset_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"rtntopipe_dataset_properties_typeProperties_userName": {
 			"value": "jitendra"
 		}
 	}

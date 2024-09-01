@@ -156,6 +156,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'udfotpt_linkedservice'"
 		},
+		"rtntopipe_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'rtntopipe_linkedservice'"
+		},
+		"rtntopipeotpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'rtntopipeotpt_linkedservice'"
+		},
+		"rtntopipe_dataset_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'rtntopipe_dataset'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
@@ -249,6 +261,18 @@
 			"defaultValue": "TESTDB"
 		},
 		"parsetrans_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"rtntopipe_dataset_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"rtntopipe_dataset_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"rtntopipe_dataset_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
@@ -499,6 +523,24 @@
 					},
 					"udfotpt_linkedservice_connectionString": {
 						"value": "[parameters('udfotpt_linkedservice_connectionString')]"
+					},
+					"rtntopipe_linkedservice_connectionString": {
+						"value": "[parameters('rtntopipe_linkedservice_connectionString')]"
+					},
+					"rtntopipeotpt_linkedservice_connectionString": {
+						"value": "[parameters('rtntopipeotpt_linkedservice_connectionString')]"
+					},
+					"rtntopipe_dataset_password": {
+						"value": "[parameters('rtntopipe_dataset_password')]"
+					},
+					"rtntopipe_dataset_properties_typeProperties_server": {
+						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_server')]"
+					},
+					"rtntopipe_dataset_properties_typeProperties_database": {
+						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_database')]"
+					},
+					"rtntopipe_dataset_properties_typeProperties_userName": {
+						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -544,6 +586,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'adfdemojitendra1_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "adfdemojitendra1_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfdemojitendra1_ArmTemplate_4')]"
 			]
 		}
 	]
