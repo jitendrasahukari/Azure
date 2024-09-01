@@ -5,22 +5,22 @@
 		"factoryName": {
 			"value": "adfdemojitendra1"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
 		"Test_linkedservice_connectionString": {
 			"value": ""
 		},
-		"jsonotpt_linkedservice_connectionString": {
+		"arraydep_linkedservice_connectionString": {
 			"value": ""
 		},
-		"template1_linkedservice_connectionString": {
+		"assert_linkedservice_connectionString": {
 			"value": ""
 		},
-		"template_linkedservice_connectionString": {
+		"assertotpt_linkedservice_connectionString": {
 			"value": ""
 		},
-		"copyacbfrcachesink_linkedservice_connectionString": {
-			"value": ""
-		},
-		"copyacbfrcachesinkotpt_linkedserice_password": {
+		"cachecountrycode_linkedservice_password": {
 			"value": ""
 		},
 		"cachesink_linkedservice_password": {
@@ -29,14 +29,95 @@
 		"cachesinkinpt_linkedservice_connectionString": {
 			"value": ""
 		},
-		"cachecountrycode_linkedservice_password": {
+		"cachesinkotpt_linkedservice_password": {
 			"value": ""
 		},
-		"cachesinkotpt_linkedservice_password": {
+		"castotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"copyacbfrcachesink_linkedservice_connectionString": {
+			"value": ""
+		},
+		"copyacbfrcachesinkotpt_linkedserice_password": {
 			"value": ""
 		},
 		"copysessionlogging_linkedservice_connectionString": {
 			"value": ""
+		},
+		"emailconfig_linkedservice_connectionString": {
+			"value": ""
+		},
+		"emailconfig_linkedservice1_connectionString": {
+			"value": ""
+		},
+		"flowemp1_linkedservice_connectionString": {
+			"value": ""
+		},
+		"flowlet_dep_dataset_connectionString": {
+			"value": ""
+		},
+		"flowletemp_dataset_connectionString": {
+			"value": ""
+		},
+		"flowletotpt_dataset_connectionString": {
+			"value": ""
+		},
+		"fuzzyemp2_linkedservice_connectionString": {
+			"value": ""
+		},
+		"fuzzyjoin_linkedservice_connectionString": {
+			"value": ""
+		},
+		"fuzzyotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"jsonotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"parametarizelks_advanced_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:@{linkedService().Server},1433;Initial Catalog=@{linkedService().DBName};User ID=@{linkedService().user};Password=@{linkedService().password};Trusted_Connection=False"
+		},
+		"parsecoldata_linkedservice_password": {
+			"value": ""
+		},
+		"parseotpt1_linkedservice_connectionString": {
+			"value": ""
+		},
+		"parseotpt_linkedservice_password": {
+			"value": ""
+		},
+		"parsetrans_linkedservice_password": {
+			"value": ""
+		},
+		"parsetransotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"stringify_linkedservice_connectionString": {
+			"value": ""
+		},
+		"stringifyotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"template1_linkedservice_connectionString": {
+			"value": ""
+		},
+		"template_linkedservice_connectionString": {
+			"value": ""
+		},
+		"ttl_linkedservice_connectionString": {
+			"value": ""
+		},
+		"ttlotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"udf_linkedservice_connectionString": {
+			"value": ""
+		},
+		"udfotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://Scretes.vault.azure.net/"
@@ -44,13 +125,13 @@
 		"Testing_AKV_linkedservice_properties_typeProperties_baseUrl": {
 			"value": "https://Scretes.vault.azure.net/"
 		},
-		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server": {
+		"cachecountrycode_linkedservice_properties_typeProperties_server": {
 			"value": "prodstd.database.windows.net"
 		},
-		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database": {
+		"cachecountrycode_linkedservice_properties_typeProperties_database": {
 			"value": "TESTDB"
 		},
-		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName": {
+		"cachecountrycode_linkedservice_properties_typeProperties_userName": {
 			"value": "jitendra"
 		},
 		"cachesink_linkedservice_properties_typeProperties_server": {
@@ -62,15 +143,6 @@
 		"cachesink_linkedservice_properties_typeProperties_userName": {
 			"value": "jitendra"
 		},
-		"cachecountrycode_linkedservice_properties_typeProperties_server": {
-			"value": "prodstd.database.windows.net"
-		},
-		"cachecountrycode_linkedservice_properties_typeProperties_database": {
-			"value": "TESTDB"
-		},
-		"cachecountrycode_linkedservice_properties_typeProperties_userName": {
-			"value": "jitendra"
-		},
 		"cachesinkotpt_linkedservice_properties_typeProperties_server": {
 			"value": "prodstd.database.windows.net"
 		},
@@ -78,6 +150,42 @@
 			"value": "TESTDB"
 		},
 		"cachesinkotpt_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"parsecoldata_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"parsecoldata_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"parsecoldata_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"parseotpt_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"parseotpt_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"parseotpt_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"parsetrans_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"parsetrans_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"parsetrans_linkedservice_properties_typeProperties_userName": {
 			"value": "jitendra"
 		},
 		"containerUri": {

@@ -7,29 +7,29 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfdemojitendra1"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
 		"Test_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Test_linkedservice'"
 		},
-		"jsonotpt_linkedservice_connectionString": {
+		"arraydep_linkedservice_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'jsonotpt_linkedservice'"
+			"metadata": "Secure string for 'connectionString' of 'arraydep_linkedservice'"
 		},
-		"template1_linkedservice_connectionString": {
+		"assert_linkedservice_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'template1_linkedservice'"
+			"metadata": "Secure string for 'connectionString' of 'assert_linkedservice'"
 		},
-		"template_linkedservice_connectionString": {
+		"assertotpt_linkedservice_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'template_linkedservice'"
+			"metadata": "Secure string for 'connectionString' of 'assertotpt_linkedservice'"
 		},
-		"copyacbfrcachesink_linkedservice_connectionString": {
+		"cachecountrycode_linkedservice_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'copyacbfrcachesink_linkedservice'"
-		},
-		"copyacbfrcachesinkotpt_linkedserice_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'copyacbfrcachesinkotpt_linkedserice'"
+			"metadata": "Secure string for 'password' of 'cachecountrycode_linkedservice'"
 		},
 		"cachesink_linkedservice_password": {
 			"type": "secureString",
@@ -39,17 +39,41 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'cachesinkinpt_linkedservice'"
 		},
-		"cachecountrycode_linkedservice_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'cachecountrycode_linkedservice'"
-		},
 		"cachesinkotpt_linkedservice_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'cachesinkotpt_linkedservice'"
 		},
+		"castotpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'castotpt_linkedservice'"
+		},
+		"copyacbfrcachesink_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'copyacbfrcachesink_linkedservice'"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'copyacbfrcachesinkotpt_linkedserice'"
+		},
 		"copysessionlogging_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'copysessionlogging_linkedservice'"
+		},
+		"emailconfig_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'emailconfig_linkedservice'"
+		},
+		"emailconfig_linkedservice1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'emailconfig_linkedservice1'"
+		},
+		"flowemp1_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'flowemp1_linkedservice'"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -59,15 +83,15 @@
 			"type": "string",
 			"defaultValue": "https://Scretes.vault.azure.net/"
 		},
-		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server": {
+		"cachecountrycode_linkedservice_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "prodstd.database.windows.net"
 		},
-		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database": {
+		"cachecountrycode_linkedservice_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "TESTDB"
 		},
-		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName": {
+		"cachecountrycode_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
@@ -83,18 +107,6 @@
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
-		"cachecountrycode_linkedservice_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "prodstd.database.windows.net"
-		},
-		"cachecountrycode_linkedservice_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "TESTDB"
-		},
-		"cachecountrycode_linkedservice_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "jitendra"
-		},
 		"cachesinkotpt_linkedservice_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "prodstd.database.windows.net"
@@ -104,6 +116,18 @@
 			"defaultValue": "TESTDB"
 		},
 		"cachesinkotpt_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		}
@@ -159,6 +183,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -198,74 +239,61 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/jsonotpt_linkedservice')]",
+			"name": "[concat(parameters('factoryName'), '/arraydep_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('jsonotpt_linkedservice_connectionString')]"
+					"connectionString": "[parameters('arraydep_linkedservice_connectionString')]"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/template1_linkedservice')]",
+			"name": "[concat(parameters('factoryName'), '/assert_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('template1_linkedservice_connectionString')]"
+					"connectionString": "[parameters('assert_linkedservice_connectionString')]"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/template_linkedservice')]",
+			"name": "[concat(parameters('factoryName'), '/assertotpt_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('template_linkedservice_connectionString')]"
+					"connectionString": "[parameters('assertotpt_linkedservice_connectionString')]"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/copyacbfrcachesink_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('copyacbfrcachesink_linkedservice_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/copyacbfrcachesinkotpt_linkedserice')]",
+			"name": "[concat(parameters('factoryName'), '/cachecountrycode_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureSqlDatabase",
 				"typeProperties": {
-					"server": "[parameters('copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server')]",
-					"database": "[parameters('copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database')]",
+					"server": "[parameters('cachecountrycode_linkedservice_properties_typeProperties_server')]",
+					"database": "[parameters('cachecountrycode_linkedservice_properties_typeProperties_database')]",
 					"encrypt": "mandatory",
 					"trustServerCertificate": false,
 					"authenticationType": "SQL",
-					"userName": "[parameters('copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName')]",
+					"userName": "[parameters('cachecountrycode_linkedservice_properties_typeProperties_userName')]",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('copyacbfrcachesinkotpt_linkedserice_password')]"
+						"value": "[parameters('cachecountrycode_linkedservice_password')]"
 					}
 				}
 			},
@@ -307,28 +335,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/cachecountrycode_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"server": "[parameters('cachecountrycode_linkedservice_properties_typeProperties_server')]",
-					"database": "[parameters('cachecountrycode_linkedservice_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('cachecountrycode_linkedservice_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('cachecountrycode_linkedservice_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/cachesinkotpt_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -351,6 +357,54 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/castotpt_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('castotpt_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/copyacbfrcachesink_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('copyacbfrcachesink_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/copyacbfrcachesinkotpt_linkedserice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_server')]",
+					"database": "[parameters('copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('copyacbfrcachesinkotpt_linkedserice_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/copysessionlogging_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -364,214 +418,43 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/BinaryDatasetForDeleteActivity')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/emailconfig_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "Connect to your source store to delete files.",
-				"linkedServiceName": {
-					"referenceName": "template1_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"FolderPath": {
-						"type": "string"
-					},
-					"Directory": {
-						"type": "string"
-					}
-				},
 				"annotations": [],
-				"type": "Binary",
+				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": {
-							"value": "@dataset().Directory",
-							"type": "Expression"
-						},
-						"container": {
-							"value": "@dataset().FolderPath",
-							"type": "Expression"
-						}
-					}
+					"connectionString": "[parameters('emailconfig_linkedservice_connectionString')]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/template1_linkedservice')]"
-			]
+			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Test_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/emailconfig_linkedservice1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Test_linkedservice",
-					"type": "LinkedServiceReference"
-				},
 				"annotations": [],
-				"type": "DelimitedText",
+				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "lookup.csv",
-						"container": "employee"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "empid",
-						"type": "String"
-					},
-					{
-						"name": "name",
-						"type": "String"
-					},
-					{
-						"name": "country",
-						"type": "String"
-					},
-					{
-						"name": "department",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Test_linkedservice')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/jsonotpt_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "jsonotpt_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "input",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "depid",
-						"type": "String"
-					},
-					{
-						"name": "depname",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/jsonotpt_linkedservice')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/copyacbfrcachesink_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "copyacbfrcachesink_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "cachesink.csv",
-						"folderPath": "input",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "empname",
-						"type": "String"
-					},
-					{
-						"name": "gender",
-						"type": "String"
-					},
-					{
-						"name": "country",
-						"type": "String"
-					},
-					{
-						"name": "salary",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/copyacbfrcachesink_linkedservice')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/copyacbfrcachesinkotpt_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "copyacbfrcachesinkotpt_linkedserice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "emp_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "emp_name",
-						"type": "varchar"
-					},
-					{
-						"name": "gender",
-						"type": "varchar"
-					},
-					{
-						"name": "country",
-						"type": "varchar"
-					},
-					{
-						"name": "salary",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tbl_employee"
+					"connectionString": "[parameters('emailconfig_linkedservice1_connectionString')]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/copyacbfrcachesinkotpt_linkedserice')]"
-			]
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/flowemp1_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('flowemp1_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }
