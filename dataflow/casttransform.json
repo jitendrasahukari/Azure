@@ -1,5 +1,5 @@
 {
-	"name": "dataflow2",
+	"name": "casttransform",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -12,7 +12,15 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "castotpt_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "cast1"
@@ -30,7 +38,27 @@
 				"source1 cast(output(",
 				"          depid as integer",
 				"     ),",
-				"     errors: true) ~> cast1"
+				"     errors: true) ~> cast1",
+				"cast1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          emp_id as string,",
+				"          {name } as string,",
+				"          gender as string,",
+				"          doj as string,",
+				"          depid as string,",
+				"          isErrorRow as string,",
+				"          hasErrordataformat as string,",
+				"          hasErrornotunique as string,",
+				"          hasErrornotexists as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          empname,",
+				"          depid,",
+				"          depname",
+				"     )) ~> sink1"
 			]
 		}
 	}
