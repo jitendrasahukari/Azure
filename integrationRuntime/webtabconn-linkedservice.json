@@ -1,0 +1,6 @@
+{
+	"name": "webtabconn-linkedservice",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
