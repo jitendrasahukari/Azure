@@ -1,0 +1,25 @@
+{
+	"name": "parametarizelks_advanced",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Server=tcp:@{linkedService().Server},1433;Database=@{linkedService().DBName};User ID=@{linkedService().user};Password=@{linkedService().password};Trusted_Connection=False;Encrypt=True;Connection Timeout=30;"
+		},
+		"parameters": {
+			"Server": {
+				"type": "String"
+			},
+			"DBName": {
+				"type": "String"
+			},
+			"user": {
+				"type": "String"
+			},
+			"password": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
