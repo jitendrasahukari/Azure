@@ -87,6 +87,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'emailconfig_linkedservice1'"
 		},
+		"fixedlengthtransform_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'fixedlengthtransform_linkedservice'"
+		},
 		"flowemp1_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'flowemp1_linkedservice'"
@@ -118,6 +122,10 @@
 		"goodrows_linkedservice_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'goodrows_linkedservice'"
+		},
+		"incrementalfilecopy_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'incrementalfilecopy_linkedservice'"
 		},
 		"jsonotpt_linkedservice_connectionString": {
 			"type": "secureString",
@@ -199,6 +207,10 @@
 		"udfotpt_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'udfotpt_linkedservice'"
+		},
+		"logpipeline_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'logpipeline_linkedservice'"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -341,6 +353,18 @@
 			"defaultValue": "TESTDB"
 		},
 		"sales_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
@@ -494,6 +518,9 @@
 					"emailconfig_linkedservice1_connectionString": {
 						"value": "[parameters('emailconfig_linkedservice1_connectionString')]"
 					},
+					"fixedlengthtransform_linkedservice_connectionString": {
+						"value": "[parameters('fixedlengthtransform_linkedservice_connectionString')]"
+					},
 					"flowemp1_linkedservice_connectionString": {
 						"value": "[parameters('flowemp1_linkedservice_connectionString')]"
 					},
@@ -518,6 +545,9 @@
 					"goodrows_linkedservice_password": {
 						"value": "[parameters('goodrows_linkedservice_password')]"
 					},
+					"incrementalfilecopy_linkedservice_connectionString": {
+						"value": "[parameters('incrementalfilecopy_linkedservice_connectionString')]"
+					},
 					"jsonotpt_linkedservice_connectionString": {
 						"value": "[parameters('jsonotpt_linkedservice_connectionString')]"
 					},
@@ -535,12 +565,6 @@
 					},
 					"parseotpt_linkedservice_password": {
 						"value": "[parameters('parseotpt_linkedservice_password')]"
-					},
-					"parsetrans_linkedservice_password": {
-						"value": "[parameters('parsetrans_linkedservice_password')]"
-					},
-					"parsetransotpt_linkedservice_connectionString": {
-						"value": "[parameters('parsetransotpt_linkedservice_connectionString')]"
 					},
 					"goodrows_linkedservice_properties_typeProperties_server": {
 						"value": "[parameters('goodrows_linkedservice_properties_typeProperties_server')]"
@@ -577,15 +601,6 @@
 					},
 					"parseotpt_linkedservice_properties_typeProperties_userName": {
 						"value": "[parameters('parseotpt_linkedservice_properties_typeProperties_userName')]"
-					},
-					"parsetrans_linkedservice_properties_typeProperties_server": {
-						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_server')]"
-					},
-					"parsetrans_linkedservice_properties_typeProperties_database": {
-						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_database')]"
-					},
-					"parsetrans_linkedservice_properties_typeProperties_userName": {
-						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -606,6 +621,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"parsetrans_linkedservice_password": {
+						"value": "[parameters('parsetrans_linkedservice_password')]"
+					},
+					"parsetransotpt_linkedservice_connectionString": {
+						"value": "[parameters('parsetransotpt_linkedservice_connectionString')]"
 					},
 					"rtntopipe_dataset_password": {
 						"value": "[parameters('rtntopipe_dataset_password')]"
@@ -643,6 +664,18 @@
 					"udfotpt_linkedservice_connectionString": {
 						"value": "[parameters('udfotpt_linkedservice_connectionString')]"
 					},
+					"logpipeline_linkedservice_password": {
+						"value": "[parameters('logpipeline_linkedservice_password')]"
+					},
+					"parsetrans_linkedservice_properties_typeProperties_server": {
+						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_server')]"
+					},
+					"parsetrans_linkedservice_properties_typeProperties_database": {
+						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_database')]"
+					},
+					"parsetrans_linkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_userName')]"
+					},
 					"rtntopipe_dataset_properties_typeProperties_server": {
 						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_server')]"
 					},
@@ -660,6 +693,15 @@
 					},
 					"sales_linkedservice_properties_typeProperties_userName": {
 						"value": "[parameters('sales_linkedservice_properties_typeProperties_userName')]"
+					},
+					"logpipeline_linkedservice_properties_typeProperties_server": {
+						"value": "[parameters('logpipeline_linkedservice_properties_typeProperties_server')]"
+					},
+					"logpipeline_linkedservice_properties_typeProperties_database": {
+						"value": "[parameters('logpipeline_linkedservice_properties_typeProperties_database')]"
+					},
+					"logpipeline_linkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('logpipeline_linkedservice_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -745,6 +787,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'adfdemojitendra1_ArmTemplate_5')]"
+			]
+		},
+		{
+			"name": "adfdemojitendra1_ArmTemplate_7",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_7.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfdemojitendra1_ArmTemplate_6')]"
 			]
 		}
 	]

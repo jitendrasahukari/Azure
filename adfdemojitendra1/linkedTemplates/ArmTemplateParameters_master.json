@@ -65,6 +65,9 @@
 		"emailconfig_linkedservice1_connectionString": {
 			"value": ""
 		},
+		"fixedlengthtransform_linkedservice_connectionString": {
+			"value": ""
+		},
 		"flowemp1_linkedservice_connectionString": {
 			"value": ""
 		},
@@ -87,6 +90,9 @@
 			"value": ""
 		},
 		"goodrows_linkedservice_password": {
+			"value": ""
+		},
+		"incrementalfilecopy_linkedservice_connectionString": {
 			"value": ""
 		},
 		"jsonotpt_linkedservice_connectionString": {
@@ -147,6 +153,9 @@
 			"value": ""
 		},
 		"udfotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"logpipeline_linkedservice_password": {
 			"value": ""
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
@@ -255,6 +264,15 @@
 			"value": "TESTDB"
 		},
 		"sales_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_userName": {
 			"value": "jitendra"
 		},
 		"containerUri": {

@@ -13,6 +13,111 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Handlingerrorrows2_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Handingerrorrows1_linkedservice",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "assert_data.csv",
+						"folderPath": "REALTIMESCENARIOS",
+						"container": "azureactivitiescontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "String"
+					},
+					{
+						"name": "name ",
+						"type": "String"
+					},
+					{
+						"name": "gender",
+						"type": "String"
+					},
+					{
+						"name": "doj",
+						"type": "String"
+					},
+					{
+						"name": "depid",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Handlingerrorrowsdep_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Handingerrorrows1_linkedservice",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "assert_dep.csv",
+						"folderPath": "REALTIMESCENARIOS",
+						"container": "azureactivitiescontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "depId",
+						"type": "String"
+					},
+					{
+						"name": "depName",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "emailconfig_linkedservice1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "azureactivitiescontainer"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Test_dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -708,163 +813,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "empdata_crct_format"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/deleteactvtyscenario3_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "deleteactvtyscenario3_dataset",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "output3",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "emp_id",
-						"type": "String"
-					},
-					{
-						"name": "name ",
-						"type": "String"
-					},
-					{
-						"name": "gender",
-						"type": "String"
-					},
-					{
-						"name": "doj",
-						"type": "String"
-					},
-					{
-						"name": "depid",
-						"type": "String"
-					},
-					{
-						"name": "isErrorRow",
-						"type": "String"
-					},
-					{
-						"name": "hasErrordataformat",
-						"type": "String"
-					},
-					{
-						"name": "hasErrornotunique",
-						"type": "String"
-					},
-					{
-						"name": "hasErrornotexists",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/deleteallcsv_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "deleteallc_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "output3",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"rowDelimiter": "\n",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "emp_id",
-						"type": "String"
-					},
-					{
-						"name": "name ",
-						"type": "String"
-					},
-					{
-						"name": "gender",
-						"type": "String"
-					},
-					{
-						"name": "doj",
-						"type": "String"
-					},
-					{
-						"name": "depid",
-						"type": "String"
-					},
-					{
-						"name": "isErrorRow",
-						"type": "String"
-					},
-					{
-						"name": "hasErrordataformat",
-						"type": "String"
-					},
-					{
-						"name": "hasErrornotunique",
-						"type": "String"
-					},
-					{
-						"name": "hasErrornotexists",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/deletefilename_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "copyallfiles_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"filename": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().filename",
-							"type": "Expression"
-						},
-						"folderPath": "output3",
-						"container": "azureactivitiescontainer"
-					}
 				}
 			},
 			"dependsOn": []

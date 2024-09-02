@@ -87,6 +87,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'emailconfig_linkedservice1'"
 		},
+		"fixedlengthtransform_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'fixedlengthtransform_linkedservice'"
+		},
 		"flowemp1_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'flowemp1_linkedservice'"
@@ -118,6 +122,10 @@
 		"goodrows_linkedservice_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'goodrows_linkedservice'"
+		},
+		"incrementalfilecopy_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'incrementalfilecopy_linkedservice'"
 		},
 		"jsonotpt_linkedservice_connectionString": {
 			"type": "secureString",
@@ -199,6 +207,10 @@
 		"udfotpt_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'udfotpt_linkedservice'"
+		},
+		"logpipeline_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'logpipeline_linkedservice'"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -341,6 +353,18 @@
 			"defaultValue": "TESTDB"
 		},
 		"sales_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		}
@@ -1312,6 +1336,150 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/fuzzyjoin')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/incrementalcopyfiles')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get Metadata1",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "incrementalfilecopy_dataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true,
+								"modifiedDatetimeStart": {
+									"value": "@adddays(utcnow(), -3)",
+									"type": "Expression"
+								},
+								"modifiedDatetimeEnd": {
+									"value": "@utcNow()",
+									"type": "Expression"
+								},
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get Metadata1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get Metadata1').output.childItems",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "Copy data1",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "DelimitedTextSink",
+											"storeSettings": {
+												"type": "AzureBlobStorageWriteSettings"
+											},
+											"formatSettings": {
+												"type": "DelimitedTextWriteSettings",
+												"quoteAllText": true,
+												"fileExtension": ".txt"
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "incrementalcopyotpt_dataset",
+											"type": "DatasetReference",
+											"parameters": {
+												"filename": {
+													"value": "@item().name",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "incremecopyotpt_dataset",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/incrementalfilecopy_dataset')]",
+				"[concat(variables('factoryId'), '/datasets/incrementalcopyotpt_dataset')]",
+				"[concat(variables('factoryId'), '/datasets/incremecopyotpt_dataset')]"
 			]
 		},
 		{
@@ -3239,6 +3407,162 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/incremecopyotpt_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "incrementalfilecopy_linkedservice",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "output_new_scenarios",
+						"container": "azureactivitiescontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "String"
+					},
+					{
+						"name": "name ",
+						"type": "String"
+					},
+					{
+						"name": "gender",
+						"type": "String"
+					},
+					{
+						"name": "doj",
+						"type": "String"
+					},
+					{
+						"name": "depid",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/incrementalfilecopy_linkedservice')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/incrementalcopyotpt_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "incrementalfilecopy_linkedservice",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().filename",
+							"type": "Expression"
+						},
+						"folderPath": "input",
+						"container": "azureactivitiescontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "String"
+					},
+					{
+						"name": "name ",
+						"type": "String"
+					},
+					{
+						"name": "gender",
+						"type": "String"
+					},
+					{
+						"name": "doj",
+						"type": "String"
+					},
+					{
+						"name": "depid",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/incrementalfilecopy_linkedservice')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/incrementalfilecopy_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "incrementalfilecopy_linkedservice",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "input",
+						"container": "azureactivitiescontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "String"
+					},
+					{
+						"name": "name ",
+						"type": "String"
+					},
+					{
+						"name": "gender",
+						"type": "String"
+					},
+					{
+						"name": "doj",
+						"type": "String"
+					},
+					{
+						"name": "depid",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/incrementalfilecopy_linkedservice')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/jsonotpt_dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -4347,6 +4671,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/fixedlengthtransform_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('fixedlengthtransform_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/flowemp1_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -4455,6 +4792,19 @@
 						"type": "SecureString",
 						"value": "[parameters('goodrows_linkedservice_password')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/incrementalfilecopy_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('incrementalfilecopy_linkedservice_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -6039,6 +6389,124 @@
 				"[concat(variables('factoryId'), '/datasets/udf_dataset')]",
 				"[concat(variables('factoryId'), '/datasets/udfotpt_dataset')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/logpipelinescenario6')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Wait1",
+						"type": "Wait",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"waitTimeInSeconds": 1
+						}
+					},
+					{
+						"name": "Stored procedure1",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Wait1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[pipeline_log1]",
+							"storedProcedureParameters": {
+								"adfname": {
+									"value": {
+										"value": "@pipeline().DataFactory",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"pipelinename": {
+									"value": {
+										"value": "@pipeline().Pipeline",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"runid": {
+									"value": {
+										"value": "@pipeline().RunId",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"triggername": {
+									"value": {
+										"value": "@pipeline().TriggerName",
+										"type": "Expression"
+									},
+									"type": "String"
+								},
+								"triggertime": {
+									"value": {
+										"value": "@pipeline().TriggerTime",
+										"type": "Expression"
+									},
+									"type": "DateTime"
+								},
+								"triggertype": {
+									"value": {
+										"value": "@pipeline().TriggerType",
+										"type": "Expression"
+									},
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "logpipeline_linkedservice",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/logpipeline_linkedservice')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/logpipeline_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('logpipeline_linkedservice_properties_typeProperties_server')]",
+					"database": "[parameters('logpipeline_linkedservice_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('logpipeline_linkedservice_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('logpipeline_linkedservice_password')]"
+					}
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }

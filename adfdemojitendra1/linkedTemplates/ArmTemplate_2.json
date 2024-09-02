@@ -7,6 +7,14 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfdemojitendra1"
 		},
+		"parsetrans_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'parsetrans_linkedservice'"
+		},
+		"parsetransotpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'parsetransotpt_linkedservice'"
+		},
 		"rtntopipe_dataset_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'rtntopipe_dataset'"
@@ -55,6 +63,22 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'udfotpt_linkedservice'"
 		},
+		"logpipeline_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'logpipeline_linkedservice'"
+		},
+		"parsetrans_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"parsetrans_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"parsetrans_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
 		"rtntopipe_dataset_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "prodstd.database.windows.net"
@@ -78,12 +102,59 @@
 		"sales_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/parsetrans_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('parsetrans_linkedservice_properties_typeProperties_server')]",
+					"database": "[parameters('parsetrans_linkedservice_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('parsetrans_linkedservice_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('parsetrans_linkedservice_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/parsetransotpt_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('parsetransotpt_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/rtntopipe_dataset')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -351,6 +422,28 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/logpipeline_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('logpipeline_linkedservice_properties_typeProperties_server')]",
+					"database": "[parameters('logpipeline_linkedservice_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('logpipeline_linkedservice_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('logpipeline_linkedservice_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/BinaryDatasetForDeleteActivity')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -429,111 +522,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Handlingerrorrows2_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Handingerrorrows1_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "assert_data.csv",
-						"folderPath": "REALTIMESCENARIOS",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "emp_id",
-						"type": "String"
-					},
-					{
-						"name": "name ",
-						"type": "String"
-					},
-					{
-						"name": "gender",
-						"type": "String"
-					},
-					{
-						"name": "doj",
-						"type": "String"
-					},
-					{
-						"name": "depid",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Handlingerrorrowsdep_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Handingerrorrows1_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "assert_dep.csv",
-						"folderPath": "REALTIMESCENARIOS",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "depId",
-						"type": "String"
-					},
-					{
-						"name": "depName",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Json1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "emailconfig_linkedservice1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "azureactivitiescontainer"
-					}
-				},
-				"schema": {}
 			},
 			"dependsOn": []
 		}
