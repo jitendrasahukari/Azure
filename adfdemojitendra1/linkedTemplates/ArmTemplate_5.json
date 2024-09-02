@@ -13,6 +13,48 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/notunique_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "notcrctformat_linkedservcie",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "empname",
+						"type": "varchar"
+					},
+					{
+						"name": "gender",
+						"type": "varchar"
+					},
+					{
+						"name": "doj",
+						"type": "varchar"
+					},
+					{
+						"name": "depid",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "empdata_notunique_notcrct_rows"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/parameterizelks_dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -894,85 +936,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Delete files older than 5 days')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Please input a folder path as the parameter for this pipeline, and the pipeline will delete files which were last modified more than 30 days ago under the particular folder path.",
-				"activities": [
-					{
-						"name": "DeleteFiles",
-						"description": "Connect to your storage account to save the log file.",
-						"type": "Delete",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "BinaryDatasetForDeleteActivity",
-								"type": "DatasetReference",
-								"parameters": {
-									"FolderPath": {
-										"value": "@pipeline().parameters.SourceFolder",
-										"type": "Expression"
-									},
-									"Directory": {
-										"value": "@pipeline().parameters.SourceDirectory",
-										"type": "Expression"
-									}
-								}
-							},
-							"logStorageSettings": {
-								"linkedServiceName": {
-									"referenceName": "template_linkedservice",
-									"type": "LinkedServiceReference"
-								},
-								"path": {
-									"value": "@pipeline().parameters.LoggingPath",
-									"type": "Expression"
-								}
-							},
-							"enableLogging": true,
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true,
-								"modifiedDatetimeEnd": {
-									"value": "@{adddays(pipeline().TriggerTime, -4)}",
-									"type": "Expression"
-								},
-								"wildcardFileName": "*"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"SourceFolder": {
-						"type": "string",
-						"defaultValue": "sourcefolder"
-					},
-					"SourceDirectory": {
-						"type": "string",
-						"defaultValue": "subfolder"
-					},
-					"LoggingPath": {
-						"type": "string",
-						"defaultValue": "loggingfolder/logfile"
-					}
-				},
-				"annotations": []
 			},
 			"dependsOn": []
 		}

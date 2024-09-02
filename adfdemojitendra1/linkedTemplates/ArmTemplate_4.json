@@ -13,6 +13,32 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/copysessionloggingotpt_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "copysessionlogging_linkedservice",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "output3",
+						"container": "azureactivitiescontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/crctdata_dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -886,48 +912,6 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "emptbl_notcrct_format"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/notunique_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "notcrctformat_linkedservcie",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "emp_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "empname",
-						"type": "varchar"
-					},
-					{
-						"name": "gender",
-						"type": "varchar"
-					},
-					{
-						"name": "doj",
-						"type": "varchar"
-					},
-					{
-						"name": "depid",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "empdata_notunique_notcrct_rows"
 				}
 			},
 			"dependsOn": []

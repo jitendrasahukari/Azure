@@ -216,6 +216,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'removeduplicatessc7_linkedservice'"
 		},
+		"incrementkeyssource_dataset_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'incrementkeyssource_dataset'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
@@ -673,6 +677,9 @@
 					},
 					"removeduplicatessc7_linkedservice_connectionString": {
 						"value": "[parameters('removeduplicatessc7_linkedservice_connectionString')]"
+					},
+					"incrementkeyssource_dataset_connectionString": {
+						"value": "[parameters('incrementkeyssource_dataset_connectionString')]"
 					},
 					"parsetrans_linkedservice_properties_typeProperties_server": {
 						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_server')]"
