@@ -8,6 +8,9 @@
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
+		"Handingerrorrows1_linkedservice_connectionString": {
+			"value": ""
+		},
 		"Test_linkedservice_connectionString": {
 			"value": ""
 		},
@@ -41,7 +44,19 @@
 		"copyacbfrcachesinkotpt_linkedserice_password": {
 			"value": ""
 		},
+		"copyallfiles_linkedservice_connectionString": {
+			"value": ""
+		},
+		"copyallfilesotpt_linkedservice_connectionString": {
+			"value": ""
+		},
 		"copysessionlogging_linkedservice_connectionString": {
+			"value": ""
+		},
+		"deleteactvtyscenario3_dataset_connectionString": {
+			"value": ""
+		},
+		"deleteallc_linkedservice_connectionString": {
 			"value": ""
 		},
 		"emailconfig_linkedservice_connectionString": {
@@ -71,7 +86,13 @@
 		"fuzzyotpt_linkedservice_connectionString": {
 			"value": ""
 		},
+		"goodrows_linkedservice_password": {
+			"value": ""
+		},
 		"jsonotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"notcrctformat_linkedservcie_password": {
 			"value": ""
 		},
 		"parametarizelks_advanced_connectionString": {
@@ -101,6 +122,9 @@
 		"rtntopipeotpt_linkedservice_connectionString": {
 			"value": ""
 		},
+		"sales_linkedservice_password": {
+			"value": ""
+		},
 		"stringify_linkedservice_connectionString": {
 			"value": ""
 		},
@@ -123,27 +147,6 @@
 			"value": ""
 		},
 		"udfotpt_linkedservice_connectionString": {
-			"value": ""
-		},
-		"Handingerrorrows1_linkedservice_connectionString": {
-			"value": ""
-		},
-		"goodrows_linkedservice_password": {
-			"value": ""
-		},
-		"sales_linkedservice_password": {
-			"value": ""
-		},
-		"notcrctformat_linkedservcie_password": {
-			"value": ""
-		},
-		"copyallfiles_linkedservice_connectionString": {
-			"value": ""
-		},
-		"copyallfilesotpt_linkedservice_connectionString": {
-			"value": ""
-		},
-		"deleteactvtyscenario3_dataset_connectionString": {
 			"value": ""
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
@@ -191,6 +194,24 @@
 		"copyacbfrcachesinkotpt_linkedserice_properties_typeProperties_userName": {
 			"value": "jitendra"
 		},
+		"goodrows_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"goodrows_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"goodrows_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"notcrctformat_linkedservcie_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"notcrctformat_linkedservcie_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"notcrctformat_linkedservcie_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
 		"parsecoldata_linkedservice_properties_typeProperties_server": {
 			"value": "prodstd.database.windows.net"
 		},
@@ -227,15 +248,6 @@
 		"rtntopipe_dataset_properties_typeProperties_userName": {
 			"value": "jitendra"
 		},
-		"goodrows_linkedservice_properties_typeProperties_server": {
-			"value": "prodstd.database.windows.net"
-		},
-		"goodrows_linkedservice_properties_typeProperties_database": {
-			"value": "TESTDB"
-		},
-		"goodrows_linkedservice_properties_typeProperties_userName": {
-			"value": "jitendra"
-		},
 		"sales_linkedservice_properties_typeProperties_server": {
 			"value": "prodstd.database.windows.net"
 		},
@@ -243,15 +255,6 @@
 			"value": "TESTDB"
 		},
 		"sales_linkedservice_properties_typeProperties_userName": {
-			"value": "jitendra"
-		},
-		"notcrctformat_linkedservcie_properties_typeProperties_server": {
-			"value": "prodstd.database.windows.net"
-		},
-		"notcrctformat_linkedservcie_properties_typeProperties_database": {
-			"value": "TESTDB"
-		},
-		"notcrctformat_linkedservcie_properties_typeProperties_userName": {
 			"value": "jitendra"
 		}
 	}

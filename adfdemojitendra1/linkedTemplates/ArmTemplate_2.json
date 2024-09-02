@@ -7,6 +7,38 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfdemojitendra1"
 		},
+		"rtntopipe_dataset_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'rtntopipe_dataset'"
+		},
+		"rtntopipe_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'rtntopipe_linkedservice'"
+		},
+		"rtntopipeotpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'rtntopipeotpt_linkedservice'"
+		},
+		"sales_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'sales_linkedservice'"
+		},
+		"stringify_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'stringify_linkedservice'"
+		},
+		"stringifyotpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'stringifyotpt_linkedservice'"
+		},
+		"template1_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'template1_linkedservice'"
+		},
+		"template_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'template_linkedservice'"
+		},
 		"ttl_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ttl_linkedservice'"
@@ -23,43 +55,15 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'udfotpt_linkedservice'"
 		},
-		"Handingerrorrows1_linkedservice_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'Handingerrorrows1_linkedservice'"
-		},
-		"goodrows_linkedservice_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'goodrows_linkedservice'"
-		},
-		"sales_linkedservice_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'sales_linkedservice'"
-		},
-		"notcrctformat_linkedservcie_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'notcrctformat_linkedservcie'"
-		},
-		"copyallfiles_linkedservice_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'copyallfiles_linkedservice'"
-		},
-		"copyallfilesotpt_linkedservice_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'copyallfilesotpt_linkedservice'"
-		},
-		"deleteactvtyscenario3_dataset_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'deleteactvtyscenario3_dataset'"
-		},
-		"goodrows_linkedservice_properties_typeProperties_server": {
+		"rtntopipe_dataset_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "prodstd.database.windows.net"
 		},
-		"goodrows_linkedservice_properties_typeProperties_database": {
+		"rtntopipe_dataset_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "TESTDB"
 		},
-		"goodrows_linkedservice_properties_typeProperties_userName": {
+		"rtntopipe_dataset_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
@@ -74,24 +78,134 @@
 		"sales_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
-		},
-		"notcrctformat_linkedservcie_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "prodstd.database.windows.net"
-		},
-		"notcrctformat_linkedservcie_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "TESTDB"
-		},
-		"notcrctformat_linkedservcie_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "jitendra"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/rtntopipe_dataset')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('rtntopipe_dataset_properties_typeProperties_server')]",
+					"database": "[parameters('rtntopipe_dataset_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('rtntopipe_dataset_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('rtntopipe_dataset_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/rtntopipe_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('rtntopipe_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/rtntopipeotpt_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('rtntopipeotpt_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sales_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('sales_linkedservice_properties_typeProperties_server')]",
+					"database": "[parameters('sales_linkedservice_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('sales_linkedservice_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('sales_linkedservice_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/stringify_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('stringify_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/stringifyotpt_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('stringifyotpt_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/template1_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('template1_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/template_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('template_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ttl_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -237,124 +351,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Handingerrorrows1_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('Handingerrorrows1_linkedservice_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/goodrows_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"server": "[parameters('goodrows_linkedservice_properties_typeProperties_server')]",
-					"database": "[parameters('goodrows_linkedservice_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('goodrows_linkedservice_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('goodrows_linkedservice_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sales_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"server": "[parameters('sales_linkedservice_properties_typeProperties_server')]",
-					"database": "[parameters('sales_linkedservice_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('sales_linkedservice_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('sales_linkedservice_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/notcrctformat_linkedservcie')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"server": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_server')]",
-					"database": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('notcrctformat_linkedservcie_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/copyallfiles_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('copyallfiles_linkedservice_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/copyallfilesotpt_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('copyallfilesotpt_linkedservice_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/deleteactvtyscenario3_dataset')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('deleteactvtyscenario3_dataset_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/BinaryDatasetForDeleteActivity')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -388,36 +384,17 @@
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/template1_linkedservice')]"
+			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Json1')]",
+			"name": "[concat(parameters('factoryName'), '/Handingerrorrows1_dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "emailconfig_linkedservice1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "azureactivitiescontainer"
-					}
-				},
-				"schema": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Test_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Test_linkedservice",
+					"referenceName": "Handingerrorrows1_linkedservice",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -425,8 +402,9 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "lookup.csv",
-						"container": "employee"
+						"fileName": "SalesIND_2020_MAY_01.csv",
+						"folderPath": "REALTIMESCENARIOS",
+						"container": "azureactivitiescontainer"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -435,11 +413,11 @@
 				},
 				"schema": [
 					{
-						"name": "empid",
+						"name": "saleDate",
 						"type": "String"
 					},
 					{
-						"name": "name",
+						"name": "salesItem",
 						"type": "String"
 					},
 					{
@@ -447,7 +425,7 @@
 						"type": "String"
 					},
 					{
-						"name": "department",
+						"name": "quantity",
 						"type": "String"
 					}
 				]
@@ -455,48 +433,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/arraydep_dataset')]",
+			"name": "[concat(parameters('factoryName'), '/Handlingerrorrows2_dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "arraydep_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "assert_dep.csv",
-						"folderPath": "input",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "depId",
-						"type": "String"
-					},
-					{
-						"name": "depName",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/assert_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "assert_linkedservice",
+					"referenceName": "Handingerrorrows1_linkedservice",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -505,7 +447,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "assert_data.csv",
-						"folderPath": "input",
+						"folderPath": "REALTIMESCENARIOS",
 						"container": "azureactivitiescontainer"
 					},
 					"columnDelimiter": ",",
@@ -539,12 +481,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/assertotpt_dataset')]",
+			"name": "[concat(parameters('factoryName'), '/Handlingerrorrowsdep_dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "assertotpt_linkedservice",
+					"referenceName": "Handingerrorrows1_linkedservice",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -552,7 +494,8 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"folderPath": "output3",
+						"fileName": "assert_dep.csv",
+						"folderPath": "REALTIMESCENARIOS",
 						"container": "azureactivitiescontainer"
 					},
 					"columnDelimiter": ",",
@@ -562,22 +505,35 @@
 				},
 				"schema": [
 					{
-						"name": "empname",
+						"name": "depId",
 						"type": "String"
 					},
 					{
-						"name": "gender",
-						"type": "String"
-					},
-					{
-						"name": "country",
-						"type": "String"
-					},
-					{
-						"name": "salary",
+						"name": "depName",
 						"type": "String"
 					}
 				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Json1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "emailconfig_linkedservice1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "azureactivitiescontainer"
+					}
+				},
+				"schema": {}
 			},
 			"dependsOn": []
 		}
