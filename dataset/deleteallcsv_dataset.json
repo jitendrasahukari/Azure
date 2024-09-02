@@ -1,0 +1,58 @@
+{
+	"name": "deleteallcsv_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "deleteallc_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "emp_id",
+				"type": "String"
+			},
+			{
+				"name": "name ",
+				"type": "String"
+			},
+			{
+				"name": "gender",
+				"type": "String"
+			},
+			{
+				"name": "doj",
+				"type": "String"
+			},
+			{
+				"name": "depid",
+				"type": "String"
+			},
+			{
+				"name": "isErrorRow",
+				"type": "String"
+			},
+			{
+				"name": "hasErrordataformat",
+				"type": "String"
+			},
+			{
+				"name": "hasErrornotunique",
+				"type": "String"
+			},
+			{
+				"name": "hasErrornotexists",
+				"type": "String"
+			}
+		]
+	}
+}
