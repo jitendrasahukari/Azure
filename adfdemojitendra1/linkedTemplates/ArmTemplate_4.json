@@ -13,6 +13,48 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/crctdata_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "notcrctformat_linkedservcie",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "empname",
+						"type": "varchar"
+					},
+					{
+						"name": "gender",
+						"type": "varchar"
+					},
+					{
+						"name": "doj",
+						"type": "date"
+					},
+					{
+						"name": "depid",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "empdata_crct_format"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/deleteactvtyscenario3_dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -887,22 +929,6 @@
 					"schema": "dbo",
 					"table": "empdata_notunique_notcrct_rows"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/parameterizelks_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "parametarizelks_advanced",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {}
 			},
 			"dependsOn": []
 		}

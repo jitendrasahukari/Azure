@@ -67,6 +67,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'logpipeline_linkedservice'"
 		},
+		"removeduplicatessc7_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'removeduplicatessc7_linkedservice'"
+		},
 		"parsetrans_linkedservice_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "prodstd.database.windows.net"
@@ -444,6 +448,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/removeduplicatessc7_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('removeduplicatessc7_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/BinaryDatasetForDeleteActivity')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -480,50 +497,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/template1_linkedservice')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Handingerrorrows1_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Handingerrorrows1_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "SalesIND_2020_MAY_01.csv",
-						"folderPath": "REALTIMESCENARIOS",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "saleDate",
-						"type": "String"
-					},
-					{
-						"name": "salesItem",
-						"type": "String"
-					},
-					{
-						"name": "country",
-						"type": "String"
-					},
-					{
-						"name": "quantity",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
 		}
 	]
 }

@@ -13,6 +13,50 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Handingerrorrows1_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Handingerrorrows1_linkedservice",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "SalesIND_2020_MAY_01.csv",
+						"folderPath": "REALTIMESCENARIOS",
+						"container": "azureactivitiescontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "saleDate",
+						"type": "String"
+					},
+					{
+						"name": "salesItem",
+						"type": "String"
+					},
+					{
+						"name": "country",
+						"type": "String"
+					},
+					{
+						"name": "quantity",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Handlingerrorrows2_dataset')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -772,48 +816,6 @@
 					"quoteChar": "\""
 				},
 				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/crctdata_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "notcrctformat_linkedservcie",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "emp_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "empname",
-						"type": "varchar"
-					},
-					{
-						"name": "gender",
-						"type": "varchar"
-					},
-					{
-						"name": "doj",
-						"type": "date"
-					},
-					{
-						"name": "depid",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "empdata_crct_format"
-				}
 			},
 			"dependsOn": []
 		}

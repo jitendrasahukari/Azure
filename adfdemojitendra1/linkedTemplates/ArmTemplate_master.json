@@ -212,6 +212,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'logpipeline_linkedservice'"
 		},
+		"removeduplicatessc7_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'removeduplicatessc7_linkedservice'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
@@ -666,6 +670,9 @@
 					},
 					"logpipeline_linkedservice_password": {
 						"value": "[parameters('logpipeline_linkedservice_password')]"
+					},
+					"removeduplicatessc7_linkedservice_connectionString": {
+						"value": "[parameters('removeduplicatessc7_linkedservice_connectionString')]"
 					},
 					"parsetrans_linkedservice_properties_typeProperties_server": {
 						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_server')]"
