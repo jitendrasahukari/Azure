@@ -180,6 +180,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'sales_linkedservice'"
 		},
+		"notcrctformat_linkedservcie_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'notcrctformat_linkedservcie'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
@@ -309,6 +313,18 @@
 			"defaultValue": "TESTDB"
 		},
 		"sales_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"notcrctformat_linkedservcie_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"notcrctformat_linkedservcie_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"notcrctformat_linkedservcie_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		}
@@ -4825,6 +4841,574 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/Handingerrorrows1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Handlingerrorrows2')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Handlingerrorrows2_dataset",
+								"type": "DatasetReference"
+							},
+							"name": "empsourcedata"
+						},
+						{
+							"dataset": {
+								"referenceName": "Handlingerrorrowsdep_dataset",
+								"type": "DatasetReference"
+							},
+							"name": "empdep"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "notcrctformat_dataset",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						},
+						{
+							"dataset": {
+								"referenceName": "notunique_dataset",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
+						},
+						{
+							"dataset": {
+								"referenceName": "noexists_dataset",
+								"type": "DatasetReference"
+							},
+							"name": "sink3"
+						},
+						{
+							"dataset": {
+								"referenceName": "crctdata_dataset",
+								"type": "DatasetReference"
+							},
+							"name": "sink4"
+						}
+					],
+					"transformations": [
+						{
+							"name": "assert1"
+						},
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "Notunique"
+						},
+						{
+							"name": "select1"
+						},
+						{
+							"name": "select2"
+						},
+						{
+							"name": "select3"
+						},
+						{
+							"name": "select4"
+						},
+						{
+							"name": "derivedColumn2"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          emp_id as integer,",
+						"          {name } as string,",
+						"          gender as string,",
+						"          doj as string,",
+						"          depid as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> empsourcedata",
+						"source(output(",
+						"          depId as integer,",
+						"          depName as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> empdep",
+						"empsourcedata, empdep assert(expectTrue(!isNull(toDate(doj, 'yyyyMMdd')), false, 'assert1', null, 'for good rows filtering'),",
+						"     expectUnique(emp_id, false, 'assert2', null, 'for duplicate rows'),",
+						"     expectExists(empsourcedata@depid == empdep@depId, false, 'assert3', null, 'For existence check in another table')) ~> assert1",
+						"assert1 derive(NotCrctFormat = isError(),",
+						"          NotUnique = hasError('assert2'),",
+						"          NotExists = hasError('assert3')) ~> derivedColumn1",
+						"derivedColumn1 split(NotCrctFormat == true(),",
+						"     NotUnique == true(),",
+						"     NotExists == true(),",
+						"     NotCrctFormat == false() && NotUnique == false() && NotExists == false() ,",
+						"     disjoint: true) ~> Notunique@(NotCrctFormat, Notunique, NotExists, correctdata)",
+						"Notunique@NotCrctFormat select(mapColumn(",
+						"          emp_id,",
+						"          {empname } = {name },",
+						"          gender,",
+						"          doj,",
+						"          depid = Notunique@NotCrctFormat@depid",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select1",
+						"Notunique@Notunique select(mapColumn(",
+						"          emp_id,",
+						"          {empname } = {name },",
+						"          gender,",
+						"          doj,",
+						"          depid = Notunique@Notunique@depid",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select2",
+						"Notunique@NotExists select(mapColumn(",
+						"          emp_id,",
+						"          {empname } = {name },",
+						"          gender,",
+						"          doj,",
+						"          depid = Notunique@NotExists@depid",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select3",
+						"Notunique@correctdata select(mapColumn(",
+						"          emp_id,",
+						"          {empname } = {name },",
+						"          gender,",
+						"          doj,",
+						"          depid = Notunique@correctdata@depid",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> select4",
+						"select4 derive(doj = toDate(doj, 'yyyyMMdd')) ~> derivedColumn2",
+						"select1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          empid as integer,",
+						"          name as string,",
+						"          gender as string,",
+						"          doj as string,",
+						"          depid as integer",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          empid = emp_id,",
+						"          name = {empname },",
+						"          gender,",
+						"          doj,",
+						"          depid",
+						"     )) ~> sink1",
+						"select2 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          emp_id as integer,",
+						"          empname as string,",
+						"          gender as string,",
+						"          doj as string,",
+						"          depid as integer",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink2",
+						"select3 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          emp_id as integer,",
+						"          empname as string,",
+						"          gender as string,",
+						"          doj as date,",
+						"          depid as integer",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink3",
+						"derivedColumn2 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          emp_id as integer,",
+						"          empname as string,",
+						"          gender as string,",
+						"          doj as date,",
+						"          depid as integer",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError') ~> sink4"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Handlingerrorrows2_dataset')]",
+				"[concat(variables('factoryId'), '/datasets/Handlingerrorrowsdep_dataset')]",
+				"[concat(variables('factoryId'), '/datasets/notcrctformat_dataset')]",
+				"[concat(variables('factoryId'), '/datasets/notunique_dataset')]",
+				"[concat(variables('factoryId'), '/datasets/noexists_dataset')]",
+				"[concat(variables('factoryId'), '/datasets/crctdata_dataset')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Handlingerrorrows2_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Handingerrorrows1_linkedservice",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "assert_data.csv",
+						"folderPath": "REALTIMESCENARIOS",
+						"container": "azureactivitiescontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "String"
+					},
+					{
+						"name": "name ",
+						"type": "String"
+					},
+					{
+						"name": "gender",
+						"type": "String"
+					},
+					{
+						"name": "doj",
+						"type": "String"
+					},
+					{
+						"name": "depid",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Handingerrorrows1_linkedservice')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Handlingerrorrowsdep_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Handingerrorrows1_linkedservice",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "assert_dep.csv",
+						"folderPath": "REALTIMESCENARIOS",
+						"container": "azureactivitiescontainer"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "depId",
+						"type": "String"
+					},
+					{
+						"name": "depName",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Handingerrorrows1_linkedservice')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/notcrctformat_linkedservcie')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_server')]",
+					"database": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('notcrctformat_linkedservcie_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/notcrctformat_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "notcrctformat_linkedservcie",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "empid",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "name",
+						"type": "varchar"
+					},
+					{
+						"name": "gender",
+						"type": "varchar"
+					},
+					{
+						"name": "doj",
+						"type": "varchar"
+					},
+					{
+						"name": "depid",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "emptbl_notcrct_format"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/notcrctformat_linkedservcie')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/notunique_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "notcrctformat_linkedservcie",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "empname",
+						"type": "varchar"
+					},
+					{
+						"name": "gender",
+						"type": "varchar"
+					},
+					{
+						"name": "doj",
+						"type": "varchar"
+					},
+					{
+						"name": "depid",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "empdata_notunique_notcrct_rows"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/notcrctformat_linkedservcie')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/noexists_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "notcrctformat_linkedservcie",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "empname",
+						"type": "varchar"
+					},
+					{
+						"name": "gender",
+						"type": "varchar"
+					},
+					{
+						"name": "doj",
+						"type": "date"
+					},
+					{
+						"name": "depid",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "empdata_noexists_notcrctformat_rows"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/notcrctformat_linkedservcie')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/crctdata_dataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "notcrctformat_linkedservcie",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "emp_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "empname",
+						"type": "varchar"
+					},
+					{
+						"name": "gender",
+						"type": "varchar"
+					},
+					{
+						"name": "doj",
+						"type": "date"
+					},
+					{
+						"name": "depid",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "empdata_crct_format"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/notcrctformat_linkedservcie')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Handlingerrorrows2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Handlingerrorrows2",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Handlingerrorrows2",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"empsourcedata": {},
+									"empdep": {},
+									"sink1": {},
+									"sink2": {},
+									"sink3": {},
+									"sink4": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/Handlingerrorrows2')]"
 			]
 		}
 	]

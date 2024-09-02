@@ -180,6 +180,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'sales_linkedservice'"
 		},
+		"notcrctformat_linkedservcie_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'notcrctformat_linkedservcie'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
@@ -309,6 +313,18 @@
 			"defaultValue": "TESTDB"
 		},
 		"sales_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"notcrctformat_linkedservcie_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"notcrctformat_linkedservcie_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"notcrctformat_linkedservcie_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
@@ -587,6 +603,9 @@
 					"sales_linkedservice_password": {
 						"value": "[parameters('sales_linkedservice_password')]"
 					},
+					"notcrctformat_linkedservcie_password": {
+						"value": "[parameters('notcrctformat_linkedservcie_password')]"
+					},
 					"goodrows_linkedservice_properties_typeProperties_server": {
 						"value": "[parameters('goodrows_linkedservice_properties_typeProperties_server')]"
 					},
@@ -604,6 +623,15 @@
 					},
 					"sales_linkedservice_properties_typeProperties_userName": {
 						"value": "[parameters('sales_linkedservice_properties_typeProperties_userName')]"
+					},
+					"notcrctformat_linkedservcie_properties_typeProperties_server": {
+						"value": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_server')]"
+					},
+					"notcrctformat_linkedservcie_properties_typeProperties_database": {
+						"value": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_database')]"
+					},
+					"notcrctformat_linkedservcie_properties_typeProperties_userName": {
+						"value": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -669,6 +697,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'adfdemojitendra1_ArmTemplate_4')]"
+			]
+		},
+		{
+			"name": "adfdemojitendra1_ArmTemplate_6",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_6.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfdemojitendra1_ArmTemplate_5')]"
 			]
 		}
 	]
