@@ -1,0 +1,27 @@
+{
+	"name": "deletefilename_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "copyallfiles_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
+				"folderPath": "output3",
+				"container": "azureactivitiescontainer"
+			}
+		}
+	}
+}
