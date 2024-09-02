@@ -1,0 +1,49 @@
+{
+	"name": "logfilestorage_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "logfilenotexistsotpt_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"logfilename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().logfilename",
+					"type": "Expression"
+				},
+				"folderPath": "log",
+				"container": "azureactivitiescontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "id",
+				"type": "String"
+			},
+			{
+				"name": "name",
+				"type": "String"
+			},
+			{
+				"name": "gender",
+				"type": "String"
+			},
+			{
+				"name": "department",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -19,7 +19,15 @@
 					"name": "source2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "logfilenotexistsotpt_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
@@ -64,7 +72,18 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"select1, source2 union(byName: true)~> union1"
+				"select1, source2 union(byName: true)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          ADFName,",
+				"          pipelinename,",
+				"          Status,",
+				"          RunId,",
+				"          TriggerName",
+				"     )) ~> sink1"
 			]
 		}
 	}

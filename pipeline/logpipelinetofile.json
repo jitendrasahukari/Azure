@@ -1,0 +1,230 @@
+{
+	"name": "logpipelinetofile",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			},
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Wait1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "logfilename",
+					"value": {
+						"value": "@concat(formatDateTime(utcNow(), 'yyyy-Mm-dd'),'_log.csv')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "logfilestorage_dataset",
+						"type": "DatasetReference",
+						"parameters": {
+							"logfilename": {
+								"value": "@variables('logfilename')",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [
+						"exists"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@activity('Get Metadata1').output.exists",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "df_logpipelinedetails",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "df_logpipelinedetails",
+									"type": "DataFlowReference",
+									"parameters": {
+										"ADFName": {
+											"value": "'@{pipeline().DataFactory}'",
+											"type": "Expression"
+										},
+										"pipelinename": {
+											"value": "'@{pipeline().Pipeline}'",
+											"type": "Expression"
+										},
+										"Status": {
+											"value": "'@{toString('Success')}'",
+											"type": "Expression"
+										},
+										"RunId": {
+											"value": "'@{pipeline().RunId}'",
+											"type": "Expression"
+										},
+										"TriggerName": {
+											"value": "'@{pipeline().TriggerName}'",
+											"type": "Expression"
+										},
+										"logfilename": {
+											"value": "'@{variables('logfilename')}'",
+											"type": "Expression"
+										}
+									},
+									"datasetParameters": {
+										"sink1": {
+											"logfilename": {
+												"value": "@variables('logfilename')",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "df_logpipelinedetails_append",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "df_logpipelinedetails_append",
+									"type": "DataFlowReference",
+									"parameters": {
+										"ADFName": {
+											"value": "'@{pipeline().DataFactory}'",
+											"type": "Expression"
+										},
+										"pipelinename": {
+											"value": "'@{pipeline().Pipeline}'",
+											"type": "Expression"
+										},
+										"Status": "toString(\"Success\")",
+										"RunId": {
+											"value": "'@{pipeline().RunId}'",
+											"type": "Expression"
+										},
+										"TriggerName": {
+											"value": "'@{pipeline().TriggerName}'",
+											"type": "Expression"
+										},
+										"logfilename": {
+											"value": "'@{variables('logfilename')}'",
+											"type": "Expression"
+										}
+									},
+									"datasetParameters": {
+										"source2": {
+											"logfilename": {
+												"value": "@variables('logfilename')",
+												"type": "Expression"
+											}
+										},
+										"sink1": {
+											"logfilename": {
+												"value": "@variables('logfilename')",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"logfilename": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
