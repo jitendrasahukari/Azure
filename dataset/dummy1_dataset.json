@@ -1,0 +1,29 @@
+{
+	"name": "dummy1_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dummy1_dataset",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "dummy.csv",
+				"folderPath": "input",
+				"container": "azureactivitiescontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "dummy",
+				"type": "String"
+			}
+		]
+	}
+}
