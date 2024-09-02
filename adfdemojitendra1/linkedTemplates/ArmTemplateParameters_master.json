@@ -92,6 +92,15 @@
 		"parsetransotpt_linkedservice_connectionString": {
 			"value": ""
 		},
+		"rtntopipe_dataset_password": {
+			"value": ""
+		},
+		"rtntopipe_linkedservice_connectionString": {
+			"value": ""
+		},
+		"rtntopipeotpt_linkedservice_connectionString": {
+			"value": ""
+		},
 		"stringify_linkedservice_connectionString": {
 			"value": ""
 		},
@@ -116,13 +125,13 @@
 		"udfotpt_linkedservice_connectionString": {
 			"value": ""
 		},
-		"rtntopipe_linkedservice_connectionString": {
+		"Handingerrorrows1_linkedservice_connectionString": {
 			"value": ""
 		},
-		"rtntopipeotpt_linkedservice_connectionString": {
+		"goodrows_linkedservice_password": {
 			"value": ""
 		},
-		"rtntopipe_dataset_password": {
+		"sales_linkedservice_password": {
 			"value": ""
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
@@ -204,6 +213,24 @@
 			"value": "TESTDB"
 		},
 		"rtntopipe_dataset_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"goodrows_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"goodrows_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"goodrows_linkedservice_properties_typeProperties_userName": {
+			"value": "jitendra"
+		},
+		"sales_linkedservice_properties_typeProperties_server": {
+			"value": "prodstd.database.windows.net"
+		},
+		"sales_linkedservice_properties_typeProperties_database": {
+			"value": "TESTDB"
+		},
+		"sales_linkedservice_properties_typeProperties_userName": {
 			"value": "jitendra"
 		},
 		"containerUri": {

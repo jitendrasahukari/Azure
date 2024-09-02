@@ -124,6 +124,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'parsetransotpt_linkedservice'"
 		},
+		"rtntopipe_dataset_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'rtntopipe_dataset'"
+		},
+		"rtntopipe_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'rtntopipe_linkedservice'"
+		},
+		"rtntopipeotpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'rtntopipeotpt_linkedservice'"
+		},
 		"stringify_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'stringify_linkedservice'"
@@ -156,17 +168,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'udfotpt_linkedservice'"
 		},
-		"rtntopipe_linkedservice_connectionString": {
+		"Handingerrorrows1_linkedservice_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'rtntopipe_linkedservice'"
+			"metadata": "Secure string for 'connectionString' of 'Handingerrorrows1_linkedservice'"
 		},
-		"rtntopipeotpt_linkedservice_connectionString": {
+		"goodrows_linkedservice_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'rtntopipeotpt_linkedservice'"
+			"metadata": "Secure string for 'password' of 'goodrows_linkedservice'"
 		},
-		"rtntopipe_dataset_password": {
+		"sales_linkedservice_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'rtntopipe_dataset'"
+			"metadata": "Secure string for 'password' of 'sales_linkedservice'"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -273,6 +285,30 @@
 			"defaultValue": "TESTDB"
 		},
 		"rtntopipe_dataset_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"goodrows_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"goodrows_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"goodrows_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"sales_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"sales_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"sales_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
@@ -453,6 +489,15 @@
 					"parsetransotpt_linkedservice_connectionString": {
 						"value": "[parameters('parsetransotpt_linkedservice_connectionString')]"
 					},
+					"rtntopipe_dataset_password": {
+						"value": "[parameters('rtntopipe_dataset_password')]"
+					},
+					"rtntopipe_linkedservice_connectionString": {
+						"value": "[parameters('rtntopipe_linkedservice_connectionString')]"
+					},
+					"rtntopipeotpt_linkedservice_connectionString": {
+						"value": "[parameters('rtntopipeotpt_linkedservice_connectionString')]"
+					},
 					"stringify_linkedservice_connectionString": {
 						"value": "[parameters('stringify_linkedservice_connectionString')]"
 					},
@@ -464,15 +509,6 @@
 					},
 					"template_linkedservice_connectionString": {
 						"value": "[parameters('template_linkedservice_connectionString')]"
-					},
-					"ttl_linkedservice_connectionString": {
-						"value": "[parameters('ttl_linkedservice_connectionString')]"
-					},
-					"ttlotpt_linkedservice_connectionString": {
-						"value": "[parameters('ttlotpt_linkedservice_connectionString')]"
-					},
-					"udf_linkedservice_connectionString": {
-						"value": "[parameters('udf_linkedservice_connectionString')]"
 					},
 					"parsecoldata_linkedservice_properties_typeProperties_server": {
 						"value": "[parameters('parsecoldata_linkedservice_properties_typeProperties_server')]"
@@ -500,6 +536,15 @@
 					},
 					"parsetrans_linkedservice_properties_typeProperties_userName": {
 						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_userName')]"
+					},
+					"rtntopipe_dataset_properties_typeProperties_server": {
+						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_server')]"
+					},
+					"rtntopipe_dataset_properties_typeProperties_database": {
+						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_database')]"
+					},
+					"rtntopipe_dataset_properties_typeProperties_userName": {
+						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -521,26 +566,44 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"ttl_linkedservice_connectionString": {
+						"value": "[parameters('ttl_linkedservice_connectionString')]"
+					},
+					"ttlotpt_linkedservice_connectionString": {
+						"value": "[parameters('ttlotpt_linkedservice_connectionString')]"
+					},
+					"udf_linkedservice_connectionString": {
+						"value": "[parameters('udf_linkedservice_connectionString')]"
+					},
 					"udfotpt_linkedservice_connectionString": {
 						"value": "[parameters('udfotpt_linkedservice_connectionString')]"
 					},
-					"rtntopipe_linkedservice_connectionString": {
-						"value": "[parameters('rtntopipe_linkedservice_connectionString')]"
+					"Handingerrorrows1_linkedservice_connectionString": {
+						"value": "[parameters('Handingerrorrows1_linkedservice_connectionString')]"
 					},
-					"rtntopipeotpt_linkedservice_connectionString": {
-						"value": "[parameters('rtntopipeotpt_linkedservice_connectionString')]"
+					"goodrows_linkedservice_password": {
+						"value": "[parameters('goodrows_linkedservice_password')]"
 					},
-					"rtntopipe_dataset_password": {
-						"value": "[parameters('rtntopipe_dataset_password')]"
+					"sales_linkedservice_password": {
+						"value": "[parameters('sales_linkedservice_password')]"
 					},
-					"rtntopipe_dataset_properties_typeProperties_server": {
-						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_server')]"
+					"goodrows_linkedservice_properties_typeProperties_server": {
+						"value": "[parameters('goodrows_linkedservice_properties_typeProperties_server')]"
 					},
-					"rtntopipe_dataset_properties_typeProperties_database": {
-						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_database')]"
+					"goodrows_linkedservice_properties_typeProperties_database": {
+						"value": "[parameters('goodrows_linkedservice_properties_typeProperties_database')]"
 					},
-					"rtntopipe_dataset_properties_typeProperties_userName": {
-						"value": "[parameters('rtntopipe_dataset_properties_typeProperties_userName')]"
+					"goodrows_linkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('goodrows_linkedservice_properties_typeProperties_userName')]"
+					},
+					"sales_linkedservice_properties_typeProperties_server": {
+						"value": "[parameters('sales_linkedservice_properties_typeProperties_server')]"
+					},
+					"sales_linkedservice_properties_typeProperties_database": {
+						"value": "[parameters('sales_linkedservice_properties_typeProperties_database')]"
+					},
+					"sales_linkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('sales_linkedservice_properties_typeProperties_userName')]"
 					}
 				}
 			},

@@ -7,31 +7,55 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfdemojitendra1"
 		},
+		"ttl_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ttl_linkedservice'"
+		},
+		"ttlotpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ttlotpt_linkedservice'"
+		},
+		"udf_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'udf_linkedservice'"
+		},
 		"udfotpt_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'udfotpt_linkedservice'"
 		},
-		"rtntopipe_linkedservice_connectionString": {
+		"Handingerrorrows1_linkedservice_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'rtntopipe_linkedservice'"
+			"metadata": "Secure string for 'connectionString' of 'Handingerrorrows1_linkedservice'"
 		},
-		"rtntopipeotpt_linkedservice_connectionString": {
+		"goodrows_linkedservice_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'rtntopipeotpt_linkedservice'"
+			"metadata": "Secure string for 'password' of 'goodrows_linkedservice'"
 		},
-		"rtntopipe_dataset_password": {
+		"sales_linkedservice_password": {
 			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'rtntopipe_dataset'"
+			"metadata": "Secure string for 'password' of 'sales_linkedservice'"
 		},
-		"rtntopipe_dataset_properties_typeProperties_server": {
+		"goodrows_linkedservice_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "prodstd.database.windows.net"
 		},
-		"rtntopipe_dataset_properties_typeProperties_database": {
+		"goodrows_linkedservice_properties_typeProperties_database": {
 			"type": "string",
 			"defaultValue": "TESTDB"
 		},
-		"rtntopipe_dataset_properties_typeProperties_userName": {
+		"goodrows_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"sales_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"sales_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"sales_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		}
@@ -40,6 +64,45 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ttl_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('ttl_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ttlotpt_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('ttlotpt_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/udf_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('udf_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/udfotpt_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -146,48 +209,57 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/rtntopipe_linkedservice')]",
+			"name": "[concat(parameters('factoryName'), '/Handingerrorrows1_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('rtntopipe_linkedservice_connectionString')]"
+					"connectionString": "[parameters('Handingerrorrows1_linkedservice_connectionString')]"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/rtntopipeotpt_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('rtntopipeotpt_linkedservice_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/rtntopipe_dataset')]",
+			"name": "[concat(parameters('factoryName'), '/goodrows_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
 				"type": "AzureSqlDatabase",
 				"typeProperties": {
-					"server": "[parameters('rtntopipe_dataset_properties_typeProperties_server')]",
-					"database": "[parameters('rtntopipe_dataset_properties_typeProperties_database')]",
+					"server": "[parameters('goodrows_linkedservice_properties_typeProperties_server')]",
+					"database": "[parameters('goodrows_linkedservice_properties_typeProperties_database')]",
 					"encrypt": "mandatory",
 					"trustServerCertificate": false,
 					"authenticationType": "SQL",
-					"userName": "[parameters('rtntopipe_dataset_properties_typeProperties_userName')]",
+					"userName": "[parameters('goodrows_linkedservice_properties_typeProperties_userName')]",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('rtntopipe_dataset_password')]"
+						"value": "[parameters('goodrows_linkedservice_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sales_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('sales_linkedservice_properties_typeProperties_server')]",
+					"database": "[parameters('sales_linkedservice_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('sales_linkedservice_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('sales_linkedservice_password')]"
 					}
 				}
 			},
@@ -541,155 +613,6 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "cachesinkotpt_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "emp_id",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "emp_name",
-						"type": "varchar"
-					},
-					{
-						"name": "gender",
-						"type": "varchar"
-					},
-					{
-						"name": "country",
-						"type": "varchar"
-					},
-					{
-						"name": "salary",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tbl_employee"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/castotpt_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "castotpt_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": "output3",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "emp_id",
-						"type": "String"
-					},
-					{
-						"name": "name ",
-						"type": "String"
-					},
-					{
-						"name": "gender",
-						"type": "String"
-					},
-					{
-						"name": "doj",
-						"type": "String"
-					},
-					{
-						"name": "depid",
-						"type": "String"
-					},
-					{
-						"name": "isErrorRow",
-						"type": "String"
-					},
-					{
-						"name": "hasErrordataformat",
-						"type": "String"
-					},
-					{
-						"name": "hasErrornotunique",
-						"type": "String"
-					},
-					{
-						"name": "hasErrornotexists",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/copyacbfrcachesink_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "copyacbfrcachesink_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "cachesink.csv",
-						"folderPath": "input",
-						"container": "azureactivitiescontainer"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "empname",
-						"type": "String"
-					},
-					{
-						"name": "gender",
-						"type": "String"
-					},
-					{
-						"name": "country",
-						"type": "String"
-					},
-					{
-						"name": "salary",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/copyacbfrcachesinkotpt_dataset')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "copyacbfrcachesinkotpt_linkedserice",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
