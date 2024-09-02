@@ -137,6 +137,15 @@
 		"notcrctformat_linkedservcie_password": {
 			"value": ""
 		},
+		"copyallfiles_linkedservice_connectionString": {
+			"value": ""
+		},
+		"copyallfilesotpt_linkedservice_connectionString": {
+			"value": ""
+		},
+		"deleteactvtyscenario3_dataset_connectionString": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
 		},

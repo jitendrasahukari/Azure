@@ -184,6 +184,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'notcrctformat_linkedservcie'"
 		},
+		"copyallfiles_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'copyallfiles_linkedservice'"
+		},
+		"copyallfilesotpt_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'copyallfilesotpt_linkedservice'"
+		},
+		"deleteactvtyscenario3_dataset_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'deleteactvtyscenario3_dataset'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adlsgen2jittuaccount.dfs.core.windows.net/"
@@ -605,6 +617,15 @@
 					},
 					"notcrctformat_linkedservcie_password": {
 						"value": "[parameters('notcrctformat_linkedservcie_password')]"
+					},
+					"copyallfiles_linkedservice_connectionString": {
+						"value": "[parameters('copyallfiles_linkedservice_connectionString')]"
+					},
+					"copyallfilesotpt_linkedservice_connectionString": {
+						"value": "[parameters('copyallfilesotpt_linkedservice_connectionString')]"
+					},
+					"deleteactvtyscenario3_dataset_connectionString": {
+						"value": "[parameters('deleteactvtyscenario3_dataset_connectionString')]"
 					},
 					"goodrows_linkedservice_properties_typeProperties_server": {
 						"value": "[parameters('goodrows_linkedservice_properties_typeProperties_server')]"
