@@ -63,9 +63,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'incrementalfilecopy_linkedservice'"
 		},
+		"incrementkeyssource_dataset_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'incrementkeyssource_dataset'"
+		},
 		"jsonotpt_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'jsonotpt_linkedservice'"
+		},
+		"logpipeline_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'logpipeline_linkedservice'"
 		},
 		"notcrctformat_linkedservcie_password": {
 			"type": "secureString",
@@ -80,14 +88,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'parsecoldata_linkedservice'"
 		},
-		"parseotpt1_linkedservice_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'parseotpt1_linkedservice'"
-		},
-		"parseotpt_linkedservice_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'parseotpt_linkedservice'"
-		},
 		"goodrows_linkedservice_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "prodstd.database.windows.net"
@@ -97,6 +97,18 @@
 			"defaultValue": "TESTDB"
 		},
 		"goodrows_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
@@ -121,18 +133,6 @@
 			"defaultValue": "TESTDB"
 		},
 		"parsecoldata_linkedservice_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "jitendra"
-		},
-		"parseotpt_linkedservice_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "prodstd.database.windows.net"
-		},
-		"parseotpt_linkedservice_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "TESTDB"
-		},
-		"parseotpt_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		}
@@ -333,6 +333,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/incrementkeyssource_dataset')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('incrementkeyssource_dataset_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/jsonotpt_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -341,6 +354,28 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('jsonotpt_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/logpipeline_linkedservice')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('logpipeline_linkedservice_properties_typeProperties_server')]",
+					"database": "[parameters('logpipeline_linkedservice_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('logpipeline_linkedservice_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('logpipeline_linkedservice_password')]"
+					}
 				}
 			},
 			"dependsOn": []
@@ -411,41 +446,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('parsecoldata_linkedservice_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/parseotpt1_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('parseotpt1_linkedservice_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/parseotpt_linkedservice')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"server": "[parameters('parseotpt_linkedservice_properties_typeProperties_server')]",
-					"database": "[parameters('parseotpt_linkedservice_properties_typeProperties_database')]",
-					"encrypt": "mandatory",
-					"trustServerCertificate": false,
-					"authenticationType": "SQL",
-					"userName": "[parameters('parseotpt_linkedservice_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('parseotpt_linkedservice_password')]"
 					}
 				}
 			},

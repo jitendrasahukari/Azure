@@ -127,9 +127,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'incrementalfilecopy_linkedservice'"
 		},
+		"incrementkeyssource_dataset_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'incrementkeyssource_dataset'"
+		},
 		"jsonotpt_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'jsonotpt_linkedservice'"
+		},
+		"logpipeline_linkedservice_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'logpipeline_linkedservice'"
 		},
 		"notcrctformat_linkedservcie_password": {
 			"type": "secureString",
@@ -159,6 +167,10 @@
 		"parsetransotpt_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'parsetransotpt_linkedservice'"
+		},
+		"removeduplicatessc7_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'removeduplicatessc7_linkedservice'"
 		},
 		"rtntopipe_dataset_password": {
 			"type": "secureString",
@@ -207,18 +219,6 @@
 		"udfotpt_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'udfotpt_linkedservice'"
-		},
-		"logpipeline_linkedservice_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'logpipeline_linkedservice'"
-		},
-		"removeduplicatessc7_linkedservice_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'removeduplicatessc7_linkedservice'"
-		},
-		"incrementkeyssource_dataset_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'incrementkeyssource_dataset'"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -292,6 +292,18 @@
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
+		"logpipeline_linkedservice_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "prodstd.database.windows.net"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TESTDB"
+		},
+		"logpipeline_linkedservice_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jitendra"
+		},
 		"notcrctformat_linkedservcie_properties_typeProperties_server": {
 			"type": "string",
 			"defaultValue": "prodstd.database.windows.net"
@@ -361,18 +373,6 @@
 			"defaultValue": "TESTDB"
 		},
 		"sales_linkedservice_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "jitendra"
-		},
-		"logpipeline_linkedservice_properties_typeProperties_server": {
-			"type": "string",
-			"defaultValue": "prodstd.database.windows.net"
-		},
-		"logpipeline_linkedservice_properties_typeProperties_database": {
-			"type": "string",
-			"defaultValue": "TESTDB"
-		},
-		"logpipeline_linkedservice_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jitendra"
 		},
@@ -556,8 +556,14 @@
 					"incrementalfilecopy_linkedservice_connectionString": {
 						"value": "[parameters('incrementalfilecopy_linkedservice_connectionString')]"
 					},
+					"incrementkeyssource_dataset_connectionString": {
+						"value": "[parameters('incrementkeyssource_dataset_connectionString')]"
+					},
 					"jsonotpt_linkedservice_connectionString": {
 						"value": "[parameters('jsonotpt_linkedservice_connectionString')]"
+					},
+					"logpipeline_linkedservice_password": {
+						"value": "[parameters('logpipeline_linkedservice_password')]"
 					},
 					"notcrctformat_linkedservcie_password": {
 						"value": "[parameters('notcrctformat_linkedservcie_password')]"
@@ -568,12 +574,6 @@
 					"parsecoldata_linkedservice_password": {
 						"value": "[parameters('parsecoldata_linkedservice_password')]"
 					},
-					"parseotpt1_linkedservice_connectionString": {
-						"value": "[parameters('parseotpt1_linkedservice_connectionString')]"
-					},
-					"parseotpt_linkedservice_password": {
-						"value": "[parameters('parseotpt_linkedservice_password')]"
-					},
 					"goodrows_linkedservice_properties_typeProperties_server": {
 						"value": "[parameters('goodrows_linkedservice_properties_typeProperties_server')]"
 					},
@@ -582,6 +582,15 @@
 					},
 					"goodrows_linkedservice_properties_typeProperties_userName": {
 						"value": "[parameters('goodrows_linkedservice_properties_typeProperties_userName')]"
+					},
+					"logpipeline_linkedservice_properties_typeProperties_server": {
+						"value": "[parameters('logpipeline_linkedservice_properties_typeProperties_server')]"
+					},
+					"logpipeline_linkedservice_properties_typeProperties_database": {
+						"value": "[parameters('logpipeline_linkedservice_properties_typeProperties_database')]"
+					},
+					"logpipeline_linkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('logpipeline_linkedservice_properties_typeProperties_userName')]"
 					},
 					"notcrctformat_linkedservcie_properties_typeProperties_server": {
 						"value": "[parameters('notcrctformat_linkedservcie_properties_typeProperties_server')]"
@@ -600,15 +609,6 @@
 					},
 					"parsecoldata_linkedservice_properties_typeProperties_userName": {
 						"value": "[parameters('parsecoldata_linkedservice_properties_typeProperties_userName')]"
-					},
-					"parseotpt_linkedservice_properties_typeProperties_server": {
-						"value": "[parameters('parseotpt_linkedservice_properties_typeProperties_server')]"
-					},
-					"parseotpt_linkedservice_properties_typeProperties_database": {
-						"value": "[parameters('parseotpt_linkedservice_properties_typeProperties_database')]"
-					},
-					"parseotpt_linkedservice_properties_typeProperties_userName": {
-						"value": "[parameters('parseotpt_linkedservice_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -630,11 +630,20 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"parseotpt1_linkedservice_connectionString": {
+						"value": "[parameters('parseotpt1_linkedservice_connectionString')]"
+					},
+					"parseotpt_linkedservice_password": {
+						"value": "[parameters('parseotpt_linkedservice_password')]"
+					},
 					"parsetrans_linkedservice_password": {
 						"value": "[parameters('parsetrans_linkedservice_password')]"
 					},
 					"parsetransotpt_linkedservice_connectionString": {
 						"value": "[parameters('parsetransotpt_linkedservice_connectionString')]"
+					},
+					"removeduplicatessc7_linkedservice_connectionString": {
+						"value": "[parameters('removeduplicatessc7_linkedservice_connectionString')]"
 					},
 					"rtntopipe_dataset_password": {
 						"value": "[parameters('rtntopipe_dataset_password')]"
@@ -672,14 +681,14 @@
 					"udfotpt_linkedservice_connectionString": {
 						"value": "[parameters('udfotpt_linkedservice_connectionString')]"
 					},
-					"logpipeline_linkedservice_password": {
-						"value": "[parameters('logpipeline_linkedservice_password')]"
+					"parseotpt_linkedservice_properties_typeProperties_server": {
+						"value": "[parameters('parseotpt_linkedservice_properties_typeProperties_server')]"
 					},
-					"removeduplicatessc7_linkedservice_connectionString": {
-						"value": "[parameters('removeduplicatessc7_linkedservice_connectionString')]"
+					"parseotpt_linkedservice_properties_typeProperties_database": {
+						"value": "[parameters('parseotpt_linkedservice_properties_typeProperties_database')]"
 					},
-					"incrementkeyssource_dataset_connectionString": {
-						"value": "[parameters('incrementkeyssource_dataset_connectionString')]"
+					"parseotpt_linkedservice_properties_typeProperties_userName": {
+						"value": "[parameters('parseotpt_linkedservice_properties_typeProperties_userName')]"
 					},
 					"parsetrans_linkedservice_properties_typeProperties_server": {
 						"value": "[parameters('parsetrans_linkedservice_properties_typeProperties_server')]"
@@ -707,15 +716,6 @@
 					},
 					"sales_linkedservice_properties_typeProperties_userName": {
 						"value": "[parameters('sales_linkedservice_properties_typeProperties_userName')]"
-					},
-					"logpipeline_linkedservice_properties_typeProperties_server": {
-						"value": "[parameters('logpipeline_linkedservice_properties_typeProperties_server')]"
-					},
-					"logpipeline_linkedservice_properties_typeProperties_database": {
-						"value": "[parameters('logpipeline_linkedservice_properties_typeProperties_database')]"
-					},
-					"logpipeline_linkedservice_properties_typeProperties_userName": {
-						"value": "[parameters('logpipeline_linkedservice_properties_typeProperties_userName')]"
 					}
 				}
 			},
