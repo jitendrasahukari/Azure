@@ -102,8 +102,10 @@
 				"          gender as string,",
 				"          department as string",
 				"     ),",
+				"     partitionFileNames:['incrementskeysotpt.csv'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
