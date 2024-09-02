@@ -1,0 +1,222 @@
+{
+	"name": "Handlingerrorrows2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Handlingerrorrows2_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "empsourcedata"
+				},
+				{
+					"dataset": {
+						"referenceName": "Handlingerrorrowsdep_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "empdep"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "notcrctformat_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "notunique_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "noexists_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
+				},
+				{
+					"dataset": {
+						"referenceName": "crctdata_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink4"
+				}
+			],
+			"transformations": [
+				{
+					"name": "assert1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "Notunique"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "select3"
+				},
+				{
+					"name": "select4"
+				},
+				{
+					"name": "derivedColumn2"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          emp_id as integer,",
+				"          {name } as string,",
+				"          gender as string,",
+				"          doj as string,",
+				"          depid as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> empsourcedata",
+				"source(output(",
+				"          depId as integer,",
+				"          depName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> empdep",
+				"empsourcedata, empdep assert(expectTrue(!isNull(toDate(doj, 'yyyyMMdd')), false, 'assert1', null, 'for good rows filtering'),",
+				"     expectUnique(emp_id, false, 'assert2', null, 'for duplicate rows'),",
+				"     expectExists(empsourcedata@depid == empdep@depId, false, 'assert3', null, 'For existence check in another table')) ~> assert1",
+				"assert1 derive(NotCrctFormat = isError(),",
+				"          NotUnique = hasError('assert2'),",
+				"          NotExists = hasError('assert3')) ~> derivedColumn1",
+				"derivedColumn1 split(NotCrctFormat == true(),",
+				"     NotUnique == true(),",
+				"     NotExists == true(),",
+				"     NotCrctFormat == false() && NotUnique == false() && NotExists == false() ,",
+				"     disjoint: true) ~> Notunique@(NotCrctFormat, Notunique, NotExists, correctdata)",
+				"Notunique@NotCrctFormat select(mapColumn(",
+				"          emp_id,",
+				"          {name },",
+				"          gender,",
+				"          doj,",
+				"          depid = Notunique@NotCrctFormat@depid",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"Notunique@Notunique select(mapColumn(",
+				"          emp_id,",
+				"          {name },",
+				"          gender,",
+				"          doj,",
+				"          depid = Notunique@Notunique@depid",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"Notunique@NotExists select(mapColumn(",
+				"          emp_id,",
+				"          {name },",
+				"          gender,",
+				"          doj,",
+				"          depid = Notunique@NotExists@depid",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select3",
+				"Notunique@correctdata select(mapColumn(",
+				"          emp_id,",
+				"          {empname } = {name },",
+				"          gender,",
+				"          doj,",
+				"          depid = Notunique@correctdata@depid",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select4",
+				"select4 derive(doj = toDate(doj, 'yyyyMMdd')) ~> derivedColumn2",
+				"select1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          empid as integer,",
+				"          name as string,",
+				"          gender as string,",
+				"          doj as string,",
+				"          depid as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          empid = emp_id,",
+				"          name = {name },",
+				"          gender,",
+				"          doj,",
+				"          depid",
+				"     )) ~> sink1",
+				"select2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          emp_id as integer,",
+				"          empname as string,",
+				"          gender as string,",
+				"          doj as string,",
+				"          depid as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2",
+				"select3 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          emp_id as integer,",
+				"          empname as string,",
+				"          gender as string,",
+				"          doj as date,",
+				"          depid as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink3",
+				"derivedColumn2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          emp_id as integer,",
+				"          empname as string,",
+				"          gender as string,",
+				"          doj as date,",
+				"          depid as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink4"
+			]
+		}
+	}
+}

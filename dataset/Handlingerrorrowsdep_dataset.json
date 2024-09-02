@@ -1,0 +1,33 @@
+{
+	"name": "Handlingerrorrowsdep_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Handingerrorrows1_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "assert_dep.csv",
+				"folderPath": "REALTIMESCENARIOS",
+				"container": "azureactivitiescontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "depId",
+				"type": "String"
+			},
+			{
+				"name": "depName",
+				"type": "String"
+			}
+		]
+	}
+}

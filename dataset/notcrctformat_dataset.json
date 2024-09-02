@@ -1,0 +1,39 @@
+{
+	"name": "notcrctformat_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "notcrctformat_linkedservcie",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "empid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "gender",
+				"type": "varchar"
+			},
+			{
+				"name": "doj",
+				"type": "varchar"
+			},
+			{
+				"name": "depid",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "emptbl_notcrct_format"
+		}
+	}
+}
