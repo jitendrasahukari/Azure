@@ -1,0 +1,12 @@
+{
+	"name": "copybulksqltables_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "copybulksqltables_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}

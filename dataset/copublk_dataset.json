@@ -1,0 +1,30 @@
+{
+	"name": "copublk_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "copublk_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"tbl_schema": {
+				"type": "string"
+			},
+			"tbl_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().tbl_schema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tbl_name",
+				"type": "Expression"
+			}
+		}
+	}
+}
