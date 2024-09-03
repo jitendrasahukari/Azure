@@ -1,0 +1,23 @@
+{
+	"name": "getrecentfileotpt1_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "getrecentfileotpt_dataset",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "getrecentfile",
+				"container": "azureactivitiescontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
