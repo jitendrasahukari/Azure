@@ -32,31 +32,11 @@
 				}
 			},
 			{
-				"name": "Append variable1",
-				"type": "AppendVariable",
-				"dependsOn": [
-					{
-						"activity": "Get Metadata1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "filesarray",
-					"value": {
-						"value": "@activity('Get Metadata1').output.childItems.name",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "Set variable1",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Append variable1",
+						"activity": "Get Metadata1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -79,9 +59,6 @@
 		"variables": {
 			"filescount": {
 				"type": "String"
-			},
-			"filesarray": {
-				"type": "Array"
 			}
 		},
 		"annotations": []
