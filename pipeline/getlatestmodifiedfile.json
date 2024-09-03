@@ -207,7 +207,13 @@
 				"inputs": [
 					{
 						"referenceName": "getrecentfileotpt_dataset",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"file": {
+								"value": "@activity('Foreachfile').output.itemName",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
