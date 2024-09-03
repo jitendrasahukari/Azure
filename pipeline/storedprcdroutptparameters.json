@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "Declare @emptotal int\nExecute sp_otpt_parameters1 'male', @emptotal output\nSelect @emptotal as emptotal",
+						"sqlReaderQuery": "Declare @emptotal int\nExecute sp_otpt_parameters1 'female', @emptotal output\nSelect @emptotal as emptotal",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
