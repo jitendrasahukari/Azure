@@ -1,15 +1,24 @@
 {
-	"name": "getlatestmodifiedfile_dataset",
+	"name": "getrecentfile_dataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "getlatestmodifiedfile_linkedservice",
+			"referenceName": "getrecentfile_linkedservice",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
 				"folderPath": "input",
 				"container": "azureactivitiescontainer"
 			},
