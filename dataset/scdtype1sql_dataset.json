@@ -1,0 +1,39 @@
+{
+	"name": "scdtype1sql_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "scdtype1sql_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "emp_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "dept_name",
+				"type": "varchar"
+			},
+			{
+				"name": "dept_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "name",
+				"type": "varchar"
+			},
+			{
+				"name": "country",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "emp_scd"
+		}
+	}
+}
