@@ -12,8 +12,11 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "var",
-					"value": "jitendra"
+					"variableName": "var1",
+					"value": {
+						"value": "@int('10')",
+						"type": "Expression"
+					}
 				}
 			},
 			{
@@ -26,8 +29,8 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "var",
-					"value": "Giri"
+					"variableName": "var2",
+					"value": "efwsveb bdad"
 				}
 			},
 			{
@@ -40,8 +43,8 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "var",
-					"value": "Sreekanth"
+					"variableName": "var3",
+					"value": "jiwietygwfvc"
 				}
 			},
 			{
@@ -90,7 +93,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"variableName": "var",
+					"variableName": "var1",
 					"value": {
 						"value": "@concat(activity('one').Error?.message, '|', activity('two').Error?.message, '|', activity('three').Error?.message)",
 						"type": "Expression"
@@ -99,7 +102,13 @@
 			}
 		],
 		"variables": {
-			"var": {
+			"var1": {
+				"type": "String"
+			},
+			"var2": {
+				"type": "String"
+			},
+			"var3": {
 				"type": "String"
 			}
 		},
