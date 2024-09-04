@@ -1,0 +1,30 @@
+{
+	"name": "rounddecimalnumber",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "decimalnumber",
+					"value": {
+						"value": "@string(div(float(split(string(mul(123.3452, 100)), '.')[0]), 100))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"decimalnumber": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
