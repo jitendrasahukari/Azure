@@ -1,0 +1,16 @@
+{
+	"name": "filefromAPTtosink_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "filefromAPTtosink_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		}
+	}
+}

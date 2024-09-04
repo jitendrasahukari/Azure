@@ -1,0 +1,19 @@
+{
+	"name": "apifiledownloadtosinkotpt_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "apifiledownloadtosinkotpt_dataset",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "test.pdf",
+				"folderPath": "combineotpt",
+				"container": "azureactivitiescontainer"
+			}
+		}
+	}
+}
