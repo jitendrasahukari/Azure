@@ -1,0 +1,40 @@
+{
+	"name": "combinetwoormorerows",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "combinetwoormorerows_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          empid as string,",
+				"          empname as string,",
+				"          gender as string,",
+				"          country as string,",
+				"          skills as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 aggregate(groupBy(empid,",
+				"          empname,",
+				"          gender,",
+				"          country),",
+				"     skills = replace(replace(replace(toString(collect(skills)), '[\"', ''), '\"]', ''), '\"', '')) ~> aggregate1"
+			]
+		}
+	}
+}
