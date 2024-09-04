@@ -1,0 +1,19 @@
+{
+	"name": "csvtojsonotpt_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "csvtojsonotpt_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "combineotpt",
+				"container": "azureactivitiescontainer"
+			}
+		},
+		"schema": {}
+	}
+}
