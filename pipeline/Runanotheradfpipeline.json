@@ -1,0 +1,29 @@
+{
+	"name": "Runanotheradfpipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://management.azure.com/subscriptions/3e889f3b-9a27-4863-9265-fd1b05b0e803/resourceGroups/AZURE-PROD-Jitendra/providers/Microsoft.DataFactory/factories/AZURE-PROD-Jitendra/pipelines/waitactivity/createRun?api-version=2018-06-01",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.azure.com/"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
