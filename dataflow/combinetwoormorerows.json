@@ -12,7 +12,15 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "combinerowsotpt_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "aggregate1"
@@ -33,7 +41,13 @@
 				"          empname,",
 				"          gender,",
 				"          country),",
-				"     skills = replace(replace(replace(toString(collect(skills)), '[\"', ''), '\"]', ''), '\"', '')) ~> aggregate1"
+				"     skills = replace(replace(replace(toString(collect(skills)), '[\"', ''), '\"]', ''), '\"', '')) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['combineotpt.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
