@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "combineotpt.csv",
 				"folderPath": "combineotpt",
 				"container": "azureactivitiescontainer"
 			},
