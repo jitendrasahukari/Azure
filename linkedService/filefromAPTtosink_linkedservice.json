@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqazFOZG1reU9IYV9kTDBwd1diX0NmdEg4Vkh4QXxBQ3Jtc0tsUk91SHJ3NC1YUGNrV0lDajktSHF0NnRrSmFNN0JkYnVYQzVmU1VWVDQ4VHNsbjlEeGFNRG1oeFpCT0xLUDNfQTNIaDVTelljLXN3cVNYdFlhYUw2YXdBWkx6SGJZZVlsbDEtUEptbHREZWo2Mnl5OA&q=https%3A%2F%2Ffile-examples-com.github.io%2Fuploads%2F2017%2F02%2Ffile_example_XLSX_5000.xlsx&v=LSF4ca0vfJE",
+			"url": "https://sample-videos.com/pdf/Sample-pdf-5mb.pdf",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
