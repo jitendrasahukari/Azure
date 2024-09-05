@@ -19,6 +19,9 @@
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     rulelogic as string",
+				"}",
 				"source(output(",
 				"          empid as string,",
 				"          empname as string,",
@@ -27,7 +30,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source1",
-				"source1 filter(ERROR_FUNCTION('')) ~> filter1"
+				"source1 filter(toBoolean(expr($rulelogic))) ~> filter1"
 			]
 		}
 	}
