@@ -1,0 +1,12 @@
+{
+	"name": "sqlquiries_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlquiries_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	}
+}
