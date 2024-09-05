@@ -13,12 +13,12 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "filter1"
+				}
+			],
 			"scriptLines": [
-				"parameters{",
-				"     filename as string,",
-				"     exprrule as string",
-				"}",
 				"source(output(",
 				"          empid as string,",
 				"          empname as string,",
@@ -26,7 +26,8 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1"
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 filter(ERROR_FUNCTION('')) ~> filter1"
 			]
 		}
 	}
