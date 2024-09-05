@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "create table dbo.sqltest (id int)",
+						"sqlReaderQuery": "create table dbo.sqltest1 (id int)\nselect 1 as abcd",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
