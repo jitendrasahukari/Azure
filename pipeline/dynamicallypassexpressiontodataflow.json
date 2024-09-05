@@ -68,6 +68,12 @@
 								"dataflow": {
 									"referenceName": "gettingdynamicexpressionprompipeline",
 									"type": "DataFlowReference",
+									"parameters": {
+										"rulelogic": {
+											"value": "'@{item().rule}'",
+											"type": "Expression"
+										}
+									},
 									"datasetParameters": {
 										"source1": {
 											"srcfile": {
