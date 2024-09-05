@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "DECLARE @query varchar(100)\nSET @query = 'create schema test'\nexec sp_executesql @query\nselect 1 as abcd",
+						"sqlReaderQuery": "DECLARE @query nvarchar(100)\nSET @query = 'create table test.test(id int)'\nexec sp_executesql @query\nselect 1 as abcd",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
