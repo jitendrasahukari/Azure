@@ -1,0 +1,33 @@
+{
+	"name": "dynamicallypassepression_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dynamicallypassepression_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "rulesFile.csv",
+				"folderPath": "input",
+				"container": "azureactivitiescontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "fiename",
+				"type": "String"
+			},
+			{
+				"name": "rule",
+				"type": "String"
+			}
+		]
+	}
+}
