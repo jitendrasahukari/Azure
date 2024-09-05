@@ -1,0 +1,45 @@
+{
+	"name": "Employees1_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Employees1_linkedservice",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"srcfile": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().srcfile",
+					"type": "Expression"
+				},
+				"folderPath": "input",
+				"container": "azureactivitiescontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "empname",
+				"type": "String"
+			},
+			{
+				"name": "gender",
+				"type": "String"
+			}
+		]
+	}
+}
