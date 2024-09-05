@@ -1,0 +1,35 @@
+{
+	"name": "target_dataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "target_linkedservcie",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "custid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "custname",
+				"type": "varchar"
+			},
+			{
+				"name": "itemname",
+				"type": "varchar"
+			},
+			{
+				"name": "quantity",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "cust"
+		}
+	}
+}

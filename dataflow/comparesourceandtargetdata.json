@@ -1,0 +1,81 @@
+{
+	"name": "comparesourceandtargetdata",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "source_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "target_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "comparesourcetargetotpt_dataset",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "derivedColumn2"
+				},
+				{
+					"name": "exists1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          custid as integer,",
+				"          custname as string,",
+				"          itemname as string,",
+				"          quantity as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          custid as integer,",
+				"          custname as string,",
+				"          itemname as string,",
+				"          quantity as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"source1 derive(Hashingcol = sha2(256, columns())) ~> derivedColumn1",
+				"source2 derive(Hashingcol = sha2(256, columns())) ~> derivedColumn2",
+				"derivedColumn1, derivedColumn2 exists(derivedColumn1@Hashingcol == derivedColumn2@Hashingcol,",
+				"     negate:true,",
+				"     broadcast: 'auto')~> exists1",
+				"exists1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          empid as string,",
+				"          empname as string,",
+				"          gender as string,",
+				"          country as string,",
+				"          skills as string",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
