@@ -1,0 +1,57 @@
+{
+	"name": "checkitsweekdayornot",
+	"properties": {
+		"activities": [
+			{
+				"name": "If Condition1",
+				"type": "IfCondition",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@contains('12345', string(dayOfWeek(utcNow())))",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Set variable2",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "weekdayornot",
+								"value": "It is not a weekday"
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "weekdayornot",
+								"value": "It is a weekday"
+							}
+						}
+					]
+				}
+			}
+		],
+		"variables": {
+			"weekdayornot": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
